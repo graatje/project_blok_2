@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Room
+comment1.params=min\ max
+comment1.target=int\ getRandomNumber(int,\ int)
+comment2.params=number
+comment2.target=java.lang.String\ message(int)
+comment3.params=x\ y
+comment3.target=java.lang.String\ roomContent(int,\ int)
+comment4.params=roomInfo\ contentNumber\ itemNumber
+comment4.target=java.lang.String\ actionFromRoomContent(int,\ int,\ int)
+comment5.params=roomInfo\ itemNumber
+comment5.target=void\ addItemToBag(int,\ int)
+numComments=6
