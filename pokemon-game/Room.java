@@ -16,15 +16,15 @@ public class Room
         switch(number)
         {
             case 1:
-                return "you are in a big open field with a lot of grass";
+                return "You are in a big open field with a lot of grass.";
             case 2:
-                return "you are in a dark cave with water dripping down somewhere. It is a really constant noise.";
+                return "You are in a dark cave with water dripping down somewhere. It is a really constant noise.";
             case 3:
-                return "you are in a forrest, the trees are huge, it makes you feel small";
+                return "You are in a forest, the trees are huge, it makes you feel small.";
             case 4:
-                return "you are in a vulcano, it is really hot here. Lava is flowing at some places.";
+                return "You are in a vulcano, it is really hot here. Lava is flowing at some places.";
             default:
-                return "there is nothing here, if you see this, it's a bug.";
+                return "There is nothing here, if you see this, you have found a bug.";
         }
     }
     
@@ -56,15 +56,15 @@ public class Room
             case 2:
                 return "There seems to be nothing inside this room.";
             default:
-                return "there is nothing in this room";
+                return "There is nothing in this room.";
         }
     }
     
     public static void addItemToBag(int roomInfo, int itemNumber)
     {
         bag.add(Item.get_Item_In_Room(itemNumber));
-        game.rooms.get(roomInfo).set(3, 2);
-        game.rooms.get(roomInfo).set(4, -1);
+        Game.rooms.get(roomInfo).set(3, 2);
+        Game.rooms.get(roomInfo).set(4, -1);
     }
 }
 

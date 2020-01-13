@@ -37,65 +37,6 @@ public class battle
         generatedOponentRaw = Pokemon.getWildPokeRawStats(pokemonKind, generateLevel());
         
     }
-    //kindOfDmg is physical or special. respectively 0 and 1
-    public void theBattle(ArrayList ownRawStats, ArrayList opponentRawStats, ArrayList ownConvertedStats, ArrayList opponentConvertedStats)
-    {
-        ownhp = Pokemon.hpOfPokes.get(0);
-        opponenthp = Integer.parseInt(opponentConvertedStats.get(0).toString());
-        while(ownhp > 0 && opponenthp > 0)
-        {
-            if(Integer.parseInt(ownConvertedStats.get(5).toString()) >= Integer.parseInt(opponentConvertedStats.get(5).toString()))
-            {
-                attackBySelf(20, 0, ownRawStats, ownConvertedStats, opponentConvertedStats);
-                if(opponenthp > 0 && ownhp > 0)
-                {
-                    attackByEnemy(20, 1, opponentRawStats, opponentConvertedStats, ownConvertedStats);
-                }
-            }   
-            if(Integer.parseInt(ownConvertedStats.get(5).toString()) < Integer.parseInt(opponentConvertedStats.get(5).toString()))
-            {
-                attackByEnemy(20, 1, opponentRawStats, opponentConvertedStats, ownConvertedStats);
-                if(opponenthp > 0 && ownhp > 0)
-                {
-                     attackBySelf(20, 0, ownRawStats, ownConvertedStats, opponentConvertedStats);
-                }
-            }   
-        }
-    }
-    public void attackBySelf(ArrayList moveInfo, ArrayList rawStats, ArrayList convertedStats, ArrayList convertedStatsOpponent)
-    {
-        if(kindOfDmg == 0)//physical
-        {            
-            damage = (((2 * Integer.parseInt(rawStats.get(1).toString()) / 5 + 2) * (Integer.parseInt(moveInfo.get(0).toString())) * Integer.parseInt(convertedStats.get(1).toString()) / Integer.parseInt(convertedStatsOpponent.get(2).toString())) / 50 + 2);
-            opponenthp  -= damage;
-        }
-        else if(kindOfDmg == 1)//special
-        {
-            damage = (((2 * Integer.parseInt(rawStats.get(1).toString()) / 5 + 2) * (Integer.parseInt(moveInfo.get(0).toString())) * Integer.parseInt(convertedStats.get(3).toString()) / Integer.parseInt(convertedStatsOpponent.get(4).toString())) / 50 + 2);
-            opponenthp  -= damage;
-        }
-        //level is the level of the attacker
-        //damage = (((2 *level / 5 + 2) * moveDamage * attack / defense)/50 + 2) * modifier;
-    }
-    public void attackByEnemy(ArrayList moveInfo, ArrayList opponentRawStats, ArrayList convertedStatsOpponent, ArrayList convertedStats)
-    {
-        if(kindOfDmg == 0)//physical
-        {
-            //must cast it into an int
-            //                    level                                                                        attack                                                                                defense                                         
-            damage = (int)(((2 * Integer.parseInt(opponentRawStats.get(1).toString()) / 5 + 2) * (Integer.parseInt(moveInfo.get(0).toString())) * (Integer.parseInt(convertedStatsOpponent.get(1).toString()) * inBattleStats.get(7)) / (Integer.parseInt(convertedStats.get(2).toString()) * inBattleStats.get(1)))/50 + 2);
-            ownhp -= damage;
-        }
-        else if(kindOfDmg == 1)//special
-        {
-            damage = (((2 * Integer.parseInt(opponentRawStats.get(1).toString()) / 5 + 2) * (Integer.parseInt(moveInfo.get(0).toString())) * (Integer.parseInt(convertedStatsOpponent.get(3).toString()) * inBattleStats.get(9))/ Integer.parseInt(convertedStats.get(4).toString()) * inBattleStats.get(3)/50 + 2));
-            ownhp -= damage;
-        }
-        else if(kindOfDmg ==2)//status
-        {
-            
-        }
-    }
 }
 
   
