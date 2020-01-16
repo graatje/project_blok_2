@@ -5,8 +5,9 @@ public class Moves
 {
     
     Dictionary types = new Hashtable(); 
-   ArrayList<Integer> moveInfo = new ArrayList<Integer>();
+   static ArrayList<Integer> moveInfo = new ArrayList<Integer>();
    //moveInfo is displayed like (movedmg, type)
+  
     Moves()
     {
         // Bug, Dragon, Electric, Fighting, Fire, Flying, Ghost, Grass, Ground, Ice, Normal, Poison, Psychic, Rock, and Water.
@@ -27,7 +28,7 @@ public class Moves
         types.put("15", "rock");
         //convert int to string: String str1 = Integer.toString(a);
     }
-    public ArrayList absorb()
+    public static ArrayList absorb()
     {
         //when possible recover half of inflicted dmg
         //arraylist is like dmg, special or physical, 3 is status accuracy, type
@@ -41,7 +42,7 @@ public class Moves
         moveInfo.add(0); // indicating the amount of change, backwards or forwards.
         return moveInfo;
     }
-    public ArrayList acid()
+    public static ArrayList acid()
     {
         ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(40);
@@ -52,7 +53,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList acidArmor()
+    public static ArrayList acidArmor()
     {
          ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(0);//dmg
@@ -63,7 +64,7 @@ public class Moves
        moveInfo.add(2);
        return moveInfo;
     }
-    public ArrayList agility()
+    public static ArrayList agility()
     {
         ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(0);//dmg
@@ -74,7 +75,7 @@ public class Moves
        moveInfo.add(2);
        return moveInfo;
     }
-    public ArrayList amnesia()
+    public static ArrayList amnesia()
     {
         ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(0);//dmg
@@ -85,7 +86,7 @@ public class Moves
        moveInfo.add(2);
        return moveInfo;
     }
-    public ArrayList auroraBeam()
+    public static ArrayList auroraBeam()
     {
           ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(65);//dmg
@@ -96,7 +97,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList Barrage()
+    public static ArrayList barrage()
     {
           ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(15 * Room.getRandomNumber(2, 5));//dmg
@@ -107,7 +108,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList barrier()
+    public static ArrayList barrier()
     {
         
         ArrayList<Integer> moveInfo = new ArrayList<Integer>();
@@ -119,7 +120,7 @@ public class Moves
        moveInfo.add(2);
        return moveInfo;
     }
-    public ArrayList bite()
+    public static ArrayList bite()
     {
         
         ArrayList<Integer> moveInfo = new ArrayList<Integer>();
@@ -131,7 +132,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList blizard()
+    public static ArrayList blizard()
     {
      ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(110);//dmg
@@ -142,7 +143,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList bodySlam()
+    public static ArrayList bodySlam()
     {
          ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(85);//dmg
@@ -153,7 +154,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList boneClub()
+    public static ArrayList boneClub()
     {
          ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(65);//dmg
@@ -164,7 +165,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList bonemerang()
+    public static ArrayList bonemerang()
     {
          ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(100);//dmg
@@ -175,7 +176,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList bubble()
+    public static ArrayList bubble()
     {
          ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(40);//dmg
@@ -186,7 +187,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }  
-    public ArrayList bubbleBeam()
+    public static ArrayList bubbleBeam()
     {
          ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(65);//dmg
@@ -197,7 +198,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList clamp()
+    public static ArrayList clamp()
     {
          ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(35);//dmg
@@ -208,7 +209,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList cometPunch()
+    public static ArrayList cometPunch()
     {
          ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(18 * Room.getRandomNumber(2, 5));//dmg
@@ -219,7 +220,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList confusion()
+    public static ArrayList confusion()
     {
          ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(50);//dmg
@@ -230,7 +231,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList crabHammer()
+    public static ArrayList crabHammer()
     {
          ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(100);//dmg
@@ -241,7 +242,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList cut()
+    public static ArrayList cut()
     {
          ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(50);//dmg
@@ -252,7 +253,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList defenseCurl()
+    public static ArrayList defenseCurl()
     {
          ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(0);//dmg
@@ -263,7 +264,7 @@ public class Moves
        moveInfo.add(1);
        return moveInfo;
     }
-    public ArrayList dizyPunch()
+    public static ArrayList dizyPunch()
     {
          ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(70);//dmg
@@ -274,7 +275,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList doubleKick()
+    public static ArrayList doubleKick()
     {
          ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(60);//dmg
@@ -285,7 +286,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList doubleSlap()
+    public static ArrayList doubleSlap()
     {
          ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(15 * Room.getRandomNumber(2, 5));//dmg
@@ -296,7 +297,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList doubleTeam()
+    public static ArrayList doubleTeam()
     {
          ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(0);//dmg
@@ -307,7 +308,7 @@ public class Moves
        moveInfo.add(1);
        return moveInfo;
     }
-    public ArrayList doubleEdge()
+    public static ArrayList doubleEdge()
     {
            moveInfo.add(120);//dmg
         moveInfo.add(0);//dmgtype
@@ -317,7 +318,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList drillPeck()
+    public static ArrayList drillPeck()
     {
            moveInfo.add(100);//dmg
         moveInfo.add(80);//dmgtype
@@ -327,7 +328,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList earthquake()
+    public static ArrayList earthquake()
     {
            moveInfo.add(100);//dmg
         moveInfo.add(0);//dmgtype
@@ -337,7 +338,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList eggBomb()
+    public static ArrayList eggBomb()
     {
            moveInfo.add(100);//dmg
         moveInfo.add(0);//dmgtype
@@ -347,7 +348,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList ember()
+    public static ArrayList ember()
     {
            moveInfo.add(40);//dmg
         moveInfo.add(0);//dmgtype
@@ -357,7 +358,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList fireBlast()
+    public static ArrayList fireBlast()
     {
            moveInfo.add(110);//dmg
         moveInfo.add(0);//dmgtype
@@ -367,7 +368,7 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    public ArrayList fissure()
+    public static ArrayList fissure()
     {
            moveInfo.add(10000);//dmg
         moveInfo.add(0);//dmgtype
@@ -377,4 +378,748 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
+    public static ArrayList flamethrower()
+    {
+        moveInfo.add(90);//dmg
+        moveInfo.add(1);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(3);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList flash()
+    {
+           moveInfo.add(0);//dmg
+        moveInfo.add(2);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(12);
+       moveInfo.add(-1);
+       return moveInfo;
+    }
+    public static ArrayList furyAttack()
+    {
+           moveInfo.add(15 * Room.getRandomNumber(2, 5));//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(85);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList furySwipes()
+    {
+           moveInfo.add(18 * Room.getRandomNumber(2, 5));//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(80);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList growl()
+    {
+           moveInfo.add(0);//dmg
+        moveInfo.add(2);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(7);
+       moveInfo.add(-1);
+       return moveInfo;
+    }
+    public static ArrayList guillotine()
+    {
+       moveInfo.add(10000);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(30);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList gust()
+    {
+                moveInfo.add(40);//dmg
+        moveInfo.add(1);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(9);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList harden()
+    {
+           moveInfo.add(0);//dmg
+        moveInfo.add(2);//dmgtype
+        moveInfo.add(110);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(3);
+       moveInfo.add(1);
+       return moveInfo;
+    }
+    public static ArrayList headButt()
+     {  
+         moveInfo.add(70);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList highJumpKick()
+    {
+           moveInfo.add(130);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(90);//accuracy
+       moveInfo.add(8);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList hornAttack()
+    {
+            moveInfo.add(65);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList hornDrill()
+    {
+           moveInfo.add(10000);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(30);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList hydroPump()
+    {
+           moveInfo.add(110);//dmg
+        moveInfo.add(1);//dmgtype
+        moveInfo.add(80);//accuracy
+       moveInfo.add(2);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList hyperBeam()
+    {
+           moveInfo.add(150);//dmg
+        moveInfo.add(1);//dmgtype
+        moveInfo.add(90);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList hyperFang()
+    {
+           moveInfo.add(80);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(90);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList iceBeam()
+    {
+           moveInfo.add(90);//dmg
+        moveInfo.add(1);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(12);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList icePunch()
+      {
+          moveInfo.add(75);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(12);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList jumpKick()
+    {
+           moveInfo.add(100);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(95);//accuracy
+       moveInfo.add(8);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList karateChop()
+    {
+           moveInfo.add(50);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(8);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList kinesis()
+    {
+           moveInfo.add(0);//dmg
+        moveInfo.add(2);//dmgtype
+        moveInfo.add(80);//accuracy
+       moveInfo.add(4);//type
+       moveInfo.add(12);
+       moveInfo.add(-1);
+       return moveInfo;
+    }
+    public static ArrayList leechLife()
+    {
+           moveInfo.add(80);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(5);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList leer()
+    {
+           moveInfo.add(0);//dmg
+        moveInfo.add(2);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(8);
+       moveInfo.add(-1);
+       return moveInfo;
+    }
+    public static ArrayList lick()
+    {
+            moveInfo.add(30);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(10);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList meditate()
+    {
+            moveInfo.add(0);//dmg
+        moveInfo.add(2);//dmgtype
+        moveInfo.add(110);//accuracy
+       moveInfo.add(4);//type
+       moveInfo.add(0);
+       moveInfo.add(1);
+       return moveInfo;
+    }
+    public static ArrayList megaDrain()
+    {
+            moveInfo.add(40);//dmg
+        moveInfo.add(1);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(1);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    
+    public static ArrayList megaKick()
+    {
+               moveInfo.add(120);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(75);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList megaPunch()
+    {
+               moveInfo.add(80);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(85);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList minimize()
+    {
+        moveInfo.add(0);//dmg
+        moveInfo.add(2);//dmgtype
+        moveInfo.add(110);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(6);
+       moveInfo.add(2);
+       return moveInfo;
+    }
+    public static ArrayList payDay()
+    {
+               moveInfo.add(40);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList peck()
+    {
+               moveInfo.add(35);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(9);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList pinMissile()
+    {
+               moveInfo.add(25 * Room.getRandomNumber(2, 5));//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(95);//accuracy
+       moveInfo.add(5);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList poisonSting()
+    {
+                moveInfo.add(15);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(14);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList pound()
+    {
+                   moveInfo.add(40);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList psybeam()
+    {
+                   moveInfo.add(65);//dmg
+        moveInfo.add(1);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(4);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList psychic()
+    {
+                      moveInfo.add(90);//dmg
+        moveInfo.add(1);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(4);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList quickAttack()
+    {
+                     moveInfo.add(40);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo; 
+    }
+    public static ArrayList razorLeaf()
+    {
+                      moveInfo.add(55);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(95);//accuracy
+       moveInfo.add(1);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList rockSlide()
+    {
+                      moveInfo.add(75);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(90);//accuracy
+       moveInfo.add(15);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList rockThrow()
+    {
+                      moveInfo.add(50);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(90);//accuracy
+       moveInfo.add(15);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList rollingKick()
+    {
+                      moveInfo.add(60);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(85);//accuracy
+       moveInfo.add(8);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    
+    public static ArrayList sandAttack()
+    {
+                      moveInfo.add(0);//dmg
+        moveInfo.add(2);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(11);//type
+       moveInfo.add(12);
+       moveInfo.add(-1);
+       return moveInfo;
+    }
+    public static ArrayList scratch()
+    {
+                      moveInfo.add(40);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList screech()
+    {
+                                moveInfo.add(0);//dmg
+        moveInfo.add(2);//dmgtype
+        moveInfo.add(85);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(10);
+       moveInfo.add(-2);
+       return moveInfo;    
+    }
+    public static ArrayList sharpen()
+    {
+                                moveInfo.add(0);//dmg
+        moveInfo.add(2);//dmgtype
+        moveInfo.add(120);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(0);
+       moveInfo.add(1);
+       return moveInfo;    
+    }
+    public static ArrayList slam()
+    {
+        moveInfo.add(80);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(75);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;    
+    }
+    public static ArrayList slash()
+    {
+            moveInfo.add(70);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;    
+    }
+    public static ArrayList sludge()
+    {
+            moveInfo.add(65);//dmg
+        moveInfo.add(1);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(14);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;    
+    }
+    public static ArrayList smog()
+    {
+             moveInfo.add(30);//dmg
+        moveInfo.add(1);//dmgtype
+        moveInfo.add(70);//accuracy
+       moveInfo.add(14);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;   
+    }
+    public static ArrayList smokescreen()
+    {
+                      moveInfo.add(0);//dmg
+        moveInfo.add(2);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(12);
+       moveInfo.add(-1);
+       return moveInfo;
+    }
+    public static ArrayList spikeCannon()
+    {
+                      moveInfo.add(20 * Room.getRandomNumber(2, 5));//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList splash()
+    {
+                      moveInfo.add(0);//dmg
+        moveInfo.add(2);//dmgtype
+        moveInfo.add(1);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList stomp()
+    {
+                      moveInfo.add(65);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList strength()
+    {
+                   moveInfo.add(80);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList stringShot()
+    {
+                   moveInfo.add(0);//dmg
+        moveInfo.add(2);//dmgtype
+        moveInfo.add(95);//accuracy
+       moveInfo.add(5);//type
+       moveInfo.add(11);
+       moveInfo.add(-2);
+       return moveInfo;
+    }
+    public static ArrayList submission()
+    {
+                   moveInfo.add(80);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(80);//accuracy
+       moveInfo.add(8);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList surf()
+    {
+                moveInfo.add(90);//dmg
+        moveInfo.add(1);//dmgtype
+        moveInfo.add(80);//accuracy
+       moveInfo.add(2);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList swift()
+    {
+                  moveInfo.add(60);//dmg
+        moveInfo.add(1);//dmgtype
+        moveInfo.add(1000);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList swordsDance()
+    {
+                         moveInfo.add(0);//dmg
+        moveInfo.add(2);//dmgtype
+        moveInfo.add(1000);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(0);
+       moveInfo.add(2);
+       return moveInfo;
+    }
+    public static ArrayList tackle()
+    {
+                   moveInfo.add(40);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList tailWhip()
+    {
+                        moveInfo.add(0);//dmg
+        moveInfo.add(2);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(8);
+       moveInfo.add(-1);
+       return moveInfo;
+    }
+    public static ArrayList thrash()
+    {
+          moveInfo.add(120);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList thunder()
+    {
+          moveInfo.add(110);//dmg
+        moveInfo.add(1);//dmgtype
+        moveInfo.add(70);//accuracy
+       moveInfo.add(6);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList thunderPunch()
+    {
+          moveInfo.add(75);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(6);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList thunderShock()
+    {
+          moveInfo.add(40);//dmg
+        moveInfo.add(1);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(6);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList thunderbolt()
+    {
+           moveInfo.add(90);//dmg
+        moveInfo.add(1);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(6);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList triAttack()
+    {
+         moveInfo.add(80);//dmg
+        moveInfo.add(1);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList twineedle()
+    {
+              moveInfo.add(50);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(5);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList vineWhip()
+    {
+          moveInfo.add(45);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(1);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList viseGrip()
+    {
+          moveInfo.add(55);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList waterGun()
+    {
+        moveInfo.add(40);//dmg
+        moveInfo.add(1);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(2);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList waterfall()
+    {
+             moveInfo.add(80);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(2);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList wingAttack()
+    {
+             moveInfo.add(60);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(100);//accuracy
+       moveInfo.add(9);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    public static ArrayList withdraw()
+    {
+         moveInfo.add(0);//dmg
+        moveInfo.add(2);//dmgtype
+        moveInfo.add(1000);//accuracy
+       moveInfo.add(2);//type
+       moveInfo.add(1);
+       moveInfo.add(1);
+       return moveInfo;
+    }
+    public static ArrayList wrap()
+    {
+            moveInfo.add(15);//dmg
+        moveInfo.add(0);//dmgtype
+        moveInfo.add(90);//accuracy
+       moveInfo.add(13);//type
+       moveInfo.add(-1);
+       moveInfo.add(0);
+       return moveInfo;
+    }
+    
+
 }
