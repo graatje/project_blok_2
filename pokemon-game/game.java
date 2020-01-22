@@ -29,8 +29,14 @@ import java.util.ArrayList;
                 ArrayList<Integer> roomInfo = new ArrayList<Integer>();
                 roomInfo.add(xsize);
                 roomInfo.add(ysize);
+
+                if(ysize == (size - 1) && xsize == (size - 1)) {
+                    // This is the location where the gym should be located (check if we should change roomtype or content type, room type is unkown atm)
+                }
+
                 roomInfo.add(Room.getRandomNumber(1, 4));//roomtype
                 roomInfo.add(Room.getRandomNumber(0, 2)); //content type
+
                 if(roomInfo.get(3) == 0)
                 {
                     roomInfo.add(Room.getRandomNumber(0, 3));//item type
@@ -41,7 +47,7 @@ import java.util.ArrayList;
                 }
                 else
                 {
-                    roomInfo.add(-1);//something has to be entered because you will get an out of range error otherwise.
+                    roomInfo.add(-1); //something has to be entered because you will get an out of range error otherwise.
                 }
                 rooms.add(roomInfo);
                 // the arraylist will be like x coordinate, y coordinate, roomtype int, content type int, specific content type int

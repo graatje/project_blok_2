@@ -93,7 +93,7 @@ public class Pokemon
 		}
 	}
 	//pokemon to be switched in 
-	public void switchPokemonOutOfBattle()
+	public void switchPokemonOutOfbattle()
 	{
 		escape = 1;
 		while(escape == 1)
@@ -141,7 +141,7 @@ public class Pokemon
     return pokemon[index];   
     }
     // pokemonnumber, pokemonlevel, hpiv, atkiv,defiv,spatkiv,spdefiv,speediv, hpev, atkev, defev,spatkev, spdefev, speedev
-    public void addPoke(ArrayList rawStats)
+    public static void addPoke(ArrayList rawStats)
     {
         
         obtainedPokemonStats.add(rawStats);
