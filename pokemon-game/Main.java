@@ -46,7 +46,7 @@ public class Main
 
         print("[Note] You have bonded with " + pickedPokemon + "!");
         print("[Note] It is your task now to become strong enough to defeat the first gym.");
-        print("[Note] You can now navigate the map using the commands left, up, right, down.");
+        print("[Note] You are now able to navigate the map.");
         
         // When the user is NOT in a battle it means he may roam the map freely, thus we need to be listening to commands.
         // We should think of something where we can detect if the user is within a battle, or a non-movable situation.
@@ -68,7 +68,8 @@ public class Main
             } else if(command.equals("bag")) {
                 game.printBag();
             } else if (command.equals("pokemon")){
-                // print user their pokemon
+                print("[Note] You are carrying the following pokemon");                
+                Pokemon.printPokemon();
             }else {
                 print("Could not find the command \"" + command + "\".");
             }

@@ -92,6 +92,7 @@ public class Pokemon
 			}
 		}
 	}
+
 	//pokemon to be switched in 
 	public void switchPokemonOutOfbattle()
 	{
@@ -136,6 +137,22 @@ public class Pokemon
 		}
 	}
 	
+	public static void printPokemon() {
+		for(int x = 0; x < obtainedPokemonStats.size(); x++) {
+			ArrayList<Integer> stats = obtainedPokemonStats.get(x);
+			String pokemon = getPokemon(stats.get(0));
+			ArrayList<Integer> personalStats = convertToStats(stats);
+			int maxHealthPoints = personalStats.get(0);
+			int currentHealthPoints = hpOfPokes.get(0);
+			int level = stats.get(1);
+
+			pokemon = pokemon.substring(0, 1).toUpperCase() + pokemon.substring(1);
+
+			// - " + (x + 1) + "
+			Main.print("> [Lvl. " + level + "] " + pokemon + " (" + currentHealthPoints + "hp / " + maxHealthPoints + "hp)");
+		}
+	}
+
     public static String getPokemon(int index)
     {
     return pokemon[index];   
@@ -145,7 +162,9 @@ public class Pokemon
     {
         
         obtainedPokemonStats.add(rawStats);
-        
+
+		ArrayList<Integer> personalStats = convertToStats(rawStats);
+		hpOfPokes.add(personalStats.get(0));
     }
     
     //pokemonkind is generated with the room itself.
@@ -157,7 +176,7 @@ public class Pokemon
          ArrayList<Integer> individualPokemonStats = new ArrayList<Integer>();
          rawStats.add(pokemonKind);
          rawStats.add(level);
-         rawStats.add(Room.getRandomNumber(0, 31));
+         rawStats.add(Room.getRandomNumber(0, 31)); 
          rawStats.add(Room.getRandomNumber(0, 31));
          rawStats.add(Room.getRandomNumber(0, 31));
          rawStats.add(Room.getRandomNumber(0, 31));

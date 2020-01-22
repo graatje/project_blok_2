@@ -31,11 +31,13 @@ import java.util.ArrayList;
                 roomInfo.add(ysize);
 
                 if(ysize == (size - 1) && xsize == (size - 1)) {
-                    // This is the location where the gym should be located (check if we should change roomtype or content type, room type is unkown atm)
+                    // Location of gym
+                    roomInfo.add(5);
+                    roomInfo.add(3);
+                } else {
+                    roomInfo.add(Room.getRandomNumber(1, 4));//roomtype
+                    roomInfo.add(Room.getRandomNumber(0, 2)); //content type
                 }
-
-                roomInfo.add(Room.getRandomNumber(1, 4));//roomtype
-                roomInfo.add(Room.getRandomNumber(0, 2)); //content type
 
                 if(roomInfo.get(3) == 0)
                 {

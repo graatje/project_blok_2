@@ -23,6 +23,8 @@ public class Room
                 return "You are in a forest, the trees are huge, it makes you feel small.";
             case 4:
                 return "You are in a vulcano, it is really hot here. Lava is flowing at some places.";
+            case 5:
+                return "You have found the pokemon gym!";
             default:
                 return "There is nothing here, if you see this, you have found a bug.";
         }
@@ -55,6 +57,9 @@ public class Room
                 return "Something is shining in the corner, it is the pokemon " + Pokemon.getPokemon(itemNumber) + "!";
             case 2:
                 return "There seems to be nothing inside this room.";
+            case 3:
+                // We should check if the user has a key in his inventory
+                return "It seems to be locked, a key is required.";
             default:
                 return "There is nothing in this room.";
         }
