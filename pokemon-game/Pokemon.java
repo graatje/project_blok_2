@@ -1,11 +1,15 @@
 import java.util.ArrayList;
+import java.util.*;
+import java.util.Scanner;
 //https://github.com/Jmgiacone/Pokemon/blob/master/src/pokemon/core/Species.java
-
+import java.lang.Math;
 public class Pokemon
 {
     
-    public static ArrayList<ArrayList<Integer> > obtainedPokemonStats = new ArrayList<ArrayList<Integer>> (); 
+    public static ArrayList<ArrayList<Integer> > obtainedPokemonStats = new ArrayList<ArrayList<Integer>> (); // as raw stats
+
     public static ArrayList<Integer> hpOfPokes = new ArrayList<Integer>();
+	
     static ArrayList<Integer> rawStats = new ArrayList<Integer>();
     
     //all pokemon
@@ -14,12 +18,13 @@ public class Pokemon
     static ArrayList[][] learnset = {{Moves.vineWhip(), Moves.tackle(), Moves.razorLeaf(), Moves.growl(), Moves.doubleEdge()}, {Moves.vineWhip(), Moves.tackle(), Moves.razorLeaf(), Moves.growl(), Moves.doubleEdge()}, {Moves.vineWhip(), Moves.tackle(), Moves.razorLeaf(), Moves.growl(), Moves.doubleEdge()}, {Moves.smokescreen(), Moves.slash(), Moves.scratch(), Moves.growl(), Moves.flamethrower(), Moves.ember()}, {Moves.smokescreen(), Moves.slash(), Moves.scratch(), Moves.growl(), Moves.flamethrower(), Moves.ember()}, {Moves.wingAttack(), Moves.smokescreen(), Moves.slash(), Moves.scratch(), Moves.growl(), Moves.flamethrower(), Moves.ember()}, {Moves.withdraw(), Moves.waterGun(), Moves.tailWhip(), Moves.tackle(), Moves.hydroPump(), Moves.bubble(), Moves.bite()}, {Moves.withdraw(), Moves.waterGun(), Moves.tailWhip(), Moves.tackle(), Moves.hydroPump(), Moves.bubble(), Moves.bite()}, {Moves.withdraw(), Moves.waterGun(), Moves.tailWhip(), Moves.tackle(), Moves.hydroPump(), Moves.flash(), Moves.bubble(), Moves.bite()}, {Moves.tackle(), Moves.stringShot(), Moves.bite()}, {Moves.harden()}, {Moves.psybeam(), Moves.gust(), Moves.confusion()}, {Moves.stringShot(), Moves.poisonSting(), Moves.bite()}, {Moves.harden()}, {Moves.twineedle(), Moves.pinMissile(), Moves.furyAttack(), Moves.agility()}, {Moves.wingAttack(), Moves.tackle(), Moves.slash(), Moves.sandAttack(), Moves.quickAttack(), Moves.gust(), Moves.agility()}, {Moves.wingAttack(), Moves.tackle(), Moves.slash(), Moves.sandAttack(), Moves.quickAttack(), Moves.gust(), Moves.agility()}, {Moves.wingAttack(), Moves.tackle(), Moves.slash(), Moves.sandAttack(), Moves.quickAttack(), Moves.gust(), Moves.agility()}, {Moves.tailWhip(), Moves.tackle(), Moves.quickAttack(), Moves.hyperFang(), Moves.doubleEdge(), Moves.bite()}, {Moves.tailWhip(), Moves.tackle(), Moves.swordsDance(), Moves.quickAttack(), Moves.hyperFang(), Moves.doubleEdge(), Moves.bite()}, {Moves.peck(), Moves.leer(), Moves.growl(), Moves.furyAttack(), Moves.drillPeck(), Moves.agility()}, {Moves.peck(), Moves.leer(), Moves.growl(), Moves.furyAttack(), Moves.drillPeck(), Moves.agility()}, {Moves.wrap(), Moves.screech(), Moves.poisonSting(), Moves.leer(), Moves.bite(), Moves.acid()}, {Moves.wrap(), Moves.thunder(), Moves.screech(), Moves.poisonSting(), Moves.leer(), Moves.bite(), Moves.acid()}, {Moves.thunderbolt(), Moves.thunderShock(), Moves.thunder(), Moves.tailWhip(), Moves.slam(), Moves.quickAttack(), Moves.growl(), Moves.doubleTeam(), Moves.agility()}, {Moves.thunderbolt(), Moves.thunderShock(), Moves.thunder(), Moves.tailWhip(), Moves.quickAttack()}, {Moves.swordsDance(), Moves.swift(), Moves.slash(), Moves.sandAttack(), Moves.scratch(), Moves.poisonSting(), Moves.furySwipes(), Moves.earthquake(), Moves.defenseCurl(), Moves.cut()}, {Moves.swordsDance(), Moves.swift(), Moves.slash(), Moves.sandAttack(), Moves.scratch(), Moves.poisonSting(), Moves.furySwipes(), Moves.earthquake(), Moves.defenseCurl(), Moves.cut()}, {Moves.tailWhip(), Moves.scratch(), Moves.poisonSting(), Moves.growl(), Moves.furySwipes(), Moves.doubleKick(), Moves.bite()}, {Moves.tailWhip(), Moves.scratch(), Moves.poisonSting(), Moves.growl(), Moves.furySwipes(), Moves.doubleKick(), Moves.bite()}, {Moves.tailWhip(), Moves.slam(), Moves.scratch(), Moves.poisonSting(), Moves.doubleKick(), Moves.bodySlam()}, {Moves.poisonSting(), Moves.peck(), Moves.leer(), Moves.hornDrill(), Moves.hornAttack(), Moves.furyAttack(), Moves.doubleKick()}, {Moves.poisonSting(), Moves.peck(), Moves.leer(), Moves.hornDrill(), Moves.hornAttack(), Moves.furyAttack(), Moves.doubleKick()}, {Moves.thrash(), Moves.poisonSting(), Moves.peck(), Moves.doubleKick()}, {Moves.slam(), Moves.pound(), Moves.minimize(), Moves.growl(), Moves.doubleSlap(), Moves.defenseCurl(), Moves.bodySlam()}, {Moves.minimize(), Moves.doubleSlap()}, {Moves.tailWhip(), Moves.quickAttack(), Moves.flamethrower(), Moves.fireBlast(), Moves.ember()}, {Moves.quickAttack(), Moves.ember()}, {Moves.slam(), Moves.pound(), Moves.doubleEdge(), Moves.doubleSlap(), Moves.defenseCurl(), Moves.bodySlam()}, {Moves.doubleSlap(), Moves.defenseCurl()}, {Moves.wingAttack(), Moves.swift(), Moves.slash(), Moves.leechLife(), Moves.cut(), Moves.bite()}, {Moves.wingAttack(), Moves.swift(), Moves.slash(), Moves.screech(), Moves.leechLife(), Moves.cut(), Moves.bite()}, {Moves.megaDrain(), Moves.acid(), Moves.absorb()}, {Moves.megaDrain(), Moves.acid(), Moves.absorb()}, {Moves.megaDrain()}, {Moves.slash(), Moves.scratch(), Moves.leechLife(), Moves.cut()}, {Moves.slash(), Moves.scratch(), Moves.leechLife(), Moves.cut()}, {Moves.tackle(), Moves.psychic(), Moves.psybeam(), Moves.leechLife(), Moves.headButt(), Moves.confusion()}, {Moves.tackle(), Moves.psychic(), Moves.psybeam(), Moves.leechLife(), Moves.headButt(), Moves.gust(), Moves.confusion()}, {Moves.slash(), Moves.sandAttack(), Moves.scratch(), Moves.growl(), Moves.fissure(), Moves.earthquake()}, {Moves.triAttack(), Moves.slash(), Moves.sandAttack(), Moves.scratch(), Moves.growl(), Moves.fissure(), Moves.earthquake()}, {Moves.slash(), Moves.screech(), Moves.scratch(), Moves.payDay(), Moves.growl(), Moves.furySwipes(), Moves.bite()}, {Moves.swift(), Moves.slash(), Moves.screech(), Moves.scratch(), Moves.growl(), Moves.furySwipes(), Moves.bite()}, {Moves.waterGun(), Moves.tailWhip(), Moves.screech(), Moves.scratch(), Moves.hydroPump(), Moves.headButt(), Moves.furySwipes(), Moves.confusion(), Moves.amnesia()}, {Moves.waterGun(), Moves.tailWhip(), Moves.screech(), Moves.scratch(), Moves.hydroPump(), Moves.headButt(), Moves.furySwipes(), Moves.confusion(), Moves.amnesia()}, {Moves.thrash(), Moves.screech(), Moves.scratch(), Moves.leer(), Moves.karateChop(), Moves.furySwipes()}, {Moves.thrash(), Moves.screech(), Moves.scratch(), Moves.leer(), Moves.karateChop(), Moves.furySwipes()}, {Moves.leer(), Moves.flamethrower(), Moves.ember(), Moves.bite(), Moves.agility()}, {Moves.thunder(), Moves.bite()}, {Moves.waterGun(), Moves.slam(), Moves.hydroPump(), Moves.doubleSlap(), Moves.bubbleBeam(), Moves.bubble(), Moves.bodySlam()}, {Moves.waterGun(), Moves.slam(), Moves.hydroPump(), Moves.doubleSlap(), Moves.bubbleBeam(), Moves.bubble(), Moves.bodySlam()}, {Moves.submission(), Moves.doubleSlap(), Moves.bubbleBeam(), Moves.bubble()}, {}, {Moves.psychic(), Moves.psybeam(), Moves.kinesis(), Moves.cut(), Moves.confusion()}, {Moves.psychic(), Moves.psybeam(), Moves.kinesis(), Moves.cut(), Moves.confusion()}, {Moves.submission(), Moves.leer(), Moves.karateChop()}, {Moves.submission(), Moves.leer(), Moves.karateChop()}, {Moves.submission(), Moves.leer(), Moves.karateChop()}, {Moves.wrap(), Moves.vineWhip(), Moves.slam(), Moves.razorLeaf(), Moves.acid()}, {Moves.wrap(), Moves.vineWhip(), Moves.slam(), Moves.razorLeaf(), Moves.acid()}, {Moves.vineWhip(), Moves.razorLeaf()}, {Moves.wrap(), Moves.sludge(), Moves.screech(), Moves.poisonSting(), Moves.hydroPump(), Moves.bubbleBeam(), Moves.bubble(), Moves.barrier(), Moves.acid()}, {Moves.wrap(), Moves.sludge(), Moves.screech(), Moves.poisonSting(), Moves.hydroPump(), Moves.bubbleBeam(), Moves.bubble(), Moves.barrier(), Moves.acid()}, {Moves.tackle(), Moves.rockThrow(), Moves.earthquake(), Moves.doubleEdge(), Moves.defenseCurl()}, {Moves.tackle(), Moves.rockThrow(), Moves.earthquake(), Moves.doubleEdge(), Moves.defenseCurl()}, {Moves.tackle(), Moves.slam(), Moves.rockThrow(), Moves.earthquake(), Moves.doubleEdge(), Moves.defenseCurl()}, {Moves.tailWhip(), Moves.tackle(), Moves.stomp(), Moves.growl(), Moves.fireBlast(), Moves.ember(), Moves.agility()}, {Moves.tailWhip(), Moves.stomp(), Moves.quickAttack(), Moves.growl(), Moves.furyAttack(), Moves.fireBlast(), Moves.ember(), Moves.agility()}, {Moves.waterGun(), Moves.tackle(), Moves.psychic(), Moves.headButt(), Moves.growl(), Moves.confusion(), Moves.amnesia()}, {Moves.withdraw(), Moves.waterGun(), Moves.tackle(), Moves.psychic(), Moves.headButt(), Moves.growl(), Moves.confusion(), Moves.amnesia()}, {Moves.thunderShock(), Moves.thunder(), Moves.tackle(), Moves.screech(), Moves.flash()}, {Moves.triAttack(), Moves.thunderShock(), Moves.thunder(), Moves.tackle(), Moves.screech(), Moves.flash()}, {Moves.swordsDance(), Moves.slash(), Moves.sandAttack(), Moves.peck(), Moves.leer(), Moves.furyAttack(), Moves.cut(), Moves.agility()}, {Moves.thrash(), Moves.quickAttack(), Moves.peck(), Moves.growl(), Moves.furyAttack(), Moves.drillPeck(), Moves.agility()}, {Moves.triAttack(), Moves.thrash(), Moves.quickAttack(), Moves.peck(), Moves.growl(), Moves.furyAttack(), Moves.drillPeck(), Moves.agility()}, {Moves.iceBeam(), Moves.headButt(), Moves.growl(), Moves.auroraBeam()}, {Moves.iceBeam(), Moves.headButt(), Moves.growl(), Moves.auroraBeam()}, {Moves.sludge(), Moves.screech(), Moves.pound(), Moves.minimize(), Moves.harden(), Moves.acidArmor(), Moves.acid()}, {Moves.sludge(), Moves.screech(), Moves.pound(), Moves.minimize(), Moves.harden(), Moves.acidArmor(), Moves.acid()}, {Moves.withdraw(), Moves.tackle(), Moves.leer(), Moves.iceBeam(), Moves.hydroPump(), Moves.clamp(), Moves.auroraBeam()}, {Moves.withdraw(), Moves.spikeCannon(), Moves.auroraBeam()}, {Moves.lick()}, {Moves.lick()}, {Moves.lick()}, {Moves.tackle(), Moves.slam(), Moves.screech(), Moves.rockThrow(), Moves.rockSlide(), Moves.harden(), Moves.doubleEdge()}, {Moves.psychic(), Moves.psybeam(), Moves.pound(), Moves.meditate(), Moves.headButt(), Moves.confusion()}, {Moves.psychic(), Moves.psybeam(), Moves.pound(), Moves.meditate(), Moves.headButt(), Moves.confusion()}, {Moves.stomp(), Moves.slam(), Moves.leer(), Moves.harden(), Moves.guillotine(), Moves.crabHammer(), Moves.bubbleBeam(), Moves.bubble()}, {Moves.stomp(), Moves.slam(), Moves.leer(), Moves.harden(), Moves.guillotine(), Moves.crabHammer(), Moves.bubbleBeam(), Moves.bubble()}, {Moves.tackle(), Moves.swift(), Moves.screech()}, {Moves.tackle(), Moves.swift(), Moves.screech()}, {Moves.psychic(), Moves.confusion(), Moves.barrage()}, {Moves.stomp(), Moves.eggBomb(), Moves.confusion(), Moves.barrage()}, {Moves.thrash(), Moves.tailWhip(), Moves.leer(), Moves.headButt(), Moves.growl(), Moves.doubleEdge(), Moves.bonemerang(), Moves.boneClub()}, {Moves.thrash(), Moves.tailWhip(), Moves.leer(), Moves.headButt(), Moves.growl(), Moves.doubleEdge(), Moves.bonemerang(), Moves.boneClub()}, {Moves.rollingKick(), Moves.megaKick(), Moves.meditate(), Moves.jumpKick(), Moves.doubleKick()}, {Moves.thunderPunch(), Moves.thunder(), Moves.megaPunch(), Moves.icePunch(), Moves.cut(), Moves.cometPunch(), Moves.agility()}, {Moves.wrap(), Moves.stomp(), Moves.slam(), Moves.screech(), Moves.lick(), Moves.defenseCurl()}, {Moves.tackle(), Moves.smokescreen(), Moves.smog(), Moves.sludge()}, {Moves.tackle(), Moves.smokescreen(), Moves.smog(), Moves.sludge()}, {Moves.tailWhip(), Moves.stomp(), Moves.hornDrill(), Moves.hornAttack(), Moves.furyAttack(), Moves.earthquake()}, {Moves.tailWhip(), Moves.stomp(), Moves.hornDrill(), Moves.hornAttack(), Moves.furyAttack(), Moves.earthquake()}, {Moves.tailWhip(), Moves.pound(), Moves.minimize(), Moves.growl(), Moves.eggBomb(), Moves.doubleEdge(), Moves.doubleSlap(), Moves.defenseCurl()}, {Moves.vineWhip(), Moves.slam(), Moves.megaDrain(), Moves.absorb()}, {Moves.tailWhip(), Moves.megaPunch(), Moves.leer(), Moves.cometPunch(), Moves.bite()}, {Moves.waterGun(), Moves.smokescreen(), Moves.leer(), Moves.hydroPump(), Moves.bubbleBeam(), Moves.bubble(), Moves.agility()}, {Moves.waterGun(), Moves.smokescreen(), Moves.leer(), Moves.hydroPump(), Moves.bubbleBeam(), Moves.bubble(), Moves.agility()}, {Moves.waterfall(), Moves.tailWhip(), Moves.peck(), Moves.hornDrill(), Moves.hornAttack(), Moves.furyAttack(), Moves.agility()}, {Moves.waterfall(), Moves.tailWhip(), Moves.peck(), Moves.hornDrill(), Moves.hornAttack(), Moves.furyAttack(), Moves.agility()}, {Moves.waterGun(), Moves.tackle(), Moves.swift(), Moves.minimize(), Moves.hydroPump(), Moves.harden(), Moves.bubbleBeam(), Moves.bubble()}, {Moves.waterGun(), Moves.swift()}, {Moves.psychic(), Moves.psybeam(), Moves.meditate(), Moves.doubleSlap(), Moves.confusion(), Moves.barrier()}, {Moves.wingAttack(), Moves.swordsDance(), Moves.slash(), Moves.quickAttack(), Moves.leer(), Moves.doubleTeam(), Moves.cut(), Moves.agility()}, {Moves.slam(), Moves.pound(), Moves.lick(), Moves.icePunch(), Moves.doubleSlap(), Moves.bodySlam()}, {Moves.thunderbolt(), Moves.thunderShock(), Moves.thunderPunch(), Moves.thunder(), Moves.swift(), Moves.screech(), Moves.quickAttack(), Moves.leer()}, {Moves.smokescreen(), Moves.smog(), Moves.leer(), Moves.flamethrower(), Moves.fireBlast(), Moves.ember()}, {Moves.thrash(), Moves.swordsDance(), Moves.submission(), Moves.harden(), Moves.guillotine()}, {Moves.thrash(), Moves.tailWhip(), Moves.tackle(), Moves.hornAttack(), Moves.headButt()}, {Moves.tackle(), Moves.splash()}, {Moves.thrash(), Moves.leer(), Moves.hyperBeam(), Moves.hydroPump(), Moves.bite()}, {Moves.waterGun(), Moves.slam(), Moves.iceBeam(), Moves.hydroPump(), Moves.growl(), Moves.bodySlam()}, {}, {Moves.tailWhip(), Moves.tackle(), Moves.sandAttack(), Moves.quickAttack(), Moves.growl(), Moves.doubleEdge(), Moves.bite()}, {Moves.waterGun(), Moves.tailWhip(), Moves.tackle(), Moves.sandAttack(), Moves.quickAttack(), Moves.hydroPump(), Moves.bite(), Moves.auroraBeam(), Moves.acidArmor(), Moves.acid()}, {Moves.thunderShock(), Moves.thunder(), Moves.tailWhip(), Moves.tackle(), Moves.sandAttack(), Moves.quickAttack(), Moves.pinMissile(), Moves.doubleKick(), Moves.agility()}, {Moves.tailWhip(), Moves.tackle(), Moves.smog(), Moves.sandAttack(), Moves.quickAttack(), Moves.fireBlast(), Moves.ember(), Moves.bite()}, {Moves.triAttack(), Moves.tackle(), Moves.sharpen(), Moves.psybeam(), Moves.agility()}, {Moves.withdraw(), Moves.waterGun(), Moves.leer(), Moves.hydroPump(), Moves.bite()}, {Moves.withdraw(), Moves.waterGun(), Moves.spikeCannon(), Moves.leer(), Moves.hydroPump(), Moves.bite()}, {Moves.sandAttack(), Moves.scratch(), Moves.megaDrain(), Moves.leer(), Moves.harden(), Moves.absorb()}, {Moves.slash(), Moves.sandAttack(), Moves.scratch(), Moves.megaDrain(), Moves.leer(), Moves.harden(), Moves.absorb()}, {Moves.wingAttack(), Moves.thunder(), Moves.rockSlide(), Moves.hyperBeam(), Moves.bite(), Moves.agility()}, {Moves.tackle(), Moves.slam(), Moves.lick(), Moves.defenseCurl(), Moves.bodySlam(), Moves.amnesia()}, {Moves.iceBeam(), Moves.gust(), Moves.agility()}, {Moves.thunderShock(), Moves.thunder(), Moves.peck(), Moves.drillPeck(), Moves.agility()}, {Moves.wingAttack(), Moves.slash(), Moves.flamethrower(), Moves.ember(), Moves.agility()}, {Moves.wrap(), Moves.thunder(), Moves.slam(), Moves.leer(), Moves.hyperBeam(), Moves.agility()}, {Moves.wrap(), Moves.thunder(), Moves.slam(), Moves.leer(), Moves.hyperBeam(), Moves.agility()}, {Moves.wrap(), Moves.wingAttack(), Moves.thunderPunch(), Moves.thunder(), Moves.slam(), Moves.leer(), Moves.hyperBeam(), Moves.agility()}, {Moves.swift(), Moves.psychic(), Moves.cut(), Moves.confusion(), Moves.barrier(), Moves.amnesia()}, {Moves.psychic(), Moves.pound(), Moves.megaPunch(), Moves.barrier(), Moves.amnesia()}};
 	static Integer[][] types = {{1, 14}, {1, 14}, {1, 14}, {3}, {3}, {3, 9}, {2}, {2}, {2}, {5}, {5}, {5, 9}, {5, 14}, {5, 14}, {5, 14}, {9, 13}, {9, 13}, {9, 13}, {13}, {13}, {9, 13}, {9, 13}, {14}, {14}, {6}, {6}, {11}, {11}, {14}, {14}, {11, 14}, {14}, {14}, {11, 14}, {13}, {13}, {3}, {3}, {13}, {13}, {9, 14}, {9, 14}, {1, 14}, {1, 14}, {1, 14}, {1, 5}, {1, 5}, {5, 14}, {5, 14}, {11}, {11}, {13}, {13}, {2}, {2}, {8}, {8}, {3}, {3}, {2}, {2}, {2, 8}, {4}, {4}, {4}, {8}, {8}, {8}, {1, 14}, {1, 14}, {1, 14}, {2, 14}, {2, 14}, {11, 15}, {11, 15}, {11, 15}, {3}, {3}, {2, 4}, {2, 4}, {6}, {6}, {9, 13}, {9, 13}, {9, 13}, {2}, {2, 12}, {14}, {14}, {2}, {2, 12}, {10, 14}, {10, 14}, {10, 14}, {11, 15}, {4}, {4}, {2}, {2}, {6}, {6}, {1, 4}, {1, 4}, {11}, {11}, {8}, {8}, {13}, {14}, {14}, {11, 15}, {11, 15}, {13}, {1}, {13}, {2}, {2}, {2}, {2}, {2}, {2, 4}, {4}, {5, 9}, {4, 12}, {6}, {3}, {5}, {13}, {2}, {2, 9}, {2, 12}, {13}, {13}, {2}, {6}, {3}, {13}, {2, 15}, {2, 15}, {2, 15}, {2, 15}, {9, 15}, {13}, {9, 12}, {6, 9}, {3, 9}, {7}, {7}, {7, 9}, {4}, {4}};
     
+    static Scanner input = new Scanner(System.in);
     
-    
-    
-    
-    
-    
+    static int escape;
+	static String choice;
+    static int changeMove;
+    static int tempValue1;
+
     //preparing for setting statistics (not raw stats)
     ArrayList<Integer> individualPokemonStats = new ArrayList<Integer>();
     static int hpStat;
@@ -30,7 +35,107 @@ public class Pokemon
     static int speedStat;
     static int hpIv;
     //getPokemon is used in Room
-    
+    static int obtainedXp;
+	static int newLevel;
+	
+	public static void getXp(ArrayList rawStats, int level)
+	{
+		obtainedXp = (int)(((70* level) / 5) * (Math.pow((level *2 + 10), 2.5)/ Math.pow((level + Integer.parseInt(rawStats.get(1).toString()) + 10), 2.5) + 1));
+		rawStats.set(14, Integer.parseInt(rawStats.get(14).toString()) + obtainedXp);
+		if(Integer.parseInt(rawStats.get(14).toString()) >= Integer.parseInt(rawStats.get(1).toString()))
+		{
+			newLevel = Integer.parseInt(rawStats.get(1).toString()) + 1;
+			rawStats.set(1, newLevel);
+			rawStats.set(14, 0);
+			//level up happened, now learning new move
+			if(Integer.parseInt(rawStats.get(1).toString()) / 3.0 % 1.0 == 0.0 && Integer.parseInt(rawStats.get(1).toString()) / 3.0 < learnset[Integer.parseInt(rawStats.get(0).toString())].length)
+			{
+				if(battle.movesetSelf.size() == 4)
+				{
+					
+					escape = 1;
+					while(escape == 1)
+					{
+						System.out.println(pokemon[Integer.parseInt(rawStats.get(0).toString())] +  "wants to learn (move) but already knows 4 moves. do you want a move to be forgotten?(yes/no))");
+						choice = input.nextLine();
+						if(choice.equals("yes"))
+						{
+							System.out.println("what move do you want to forget? (1, 2, 3, 4)");
+							changeMove = input.nextInt();
+							if(changeMove <= 4 && changeMove >= 1)
+							{
+								battle.movesetSelf.get(0).set(changeMove - 1, learnset[0][Integer.parseInt(rawStats.get(1).toString()) / 3]);
+								escape = 0;
+							}
+							else
+							{
+								System.out.println("That is not a known move.");
+							}
+						}
+						
+						else if(choice.equals("no"))
+						{
+							escape = 0;
+						}
+						
+						else
+						{
+							System.out.println("please only say 'yes' or 'no'");
+						}
+					}
+				}
+				else
+				{
+					battle.movesetSelf.get(0).add(learnset[Integer.parseInt(rawStats.get(1).toString()) / 3]);
+					System.out.println(pokemon[Integer.parseInt(rawStats.get(0).toString())] + "just learned a new move! It now has ");
+				}	
+			}
+		}
+	}
+	//pokemon to be switched in 
+	public void switchPokemonOutOfBattle()
+	{
+		escape = 1;
+		while(escape == 1)
+		{
+			System.out.println("what pokemon do you want to switch? The number must be between 1 and the number of obtained pokemon");
+			int pokemon1 = input.nextInt();
+			System.out.println("what is the second pokemon you want to switch? The number must be between 1 and the number of obtained pokemon, and cant be the same as the previous number.");
+			int pokemon2 = input.nextInt();
+			if(pokemon1 >1 && pokemon1 < obtainedPokemonStats.size() && pokemon2 >1 && pokemon2 < obtainedPokemonStats.size() && pokemon1 != pokemon2)
+			{
+				// pokemon.obtainedPokemonStats(ArrayList, ArrayList, int)Pokemon.hpOfPokes(ArrayList, int), movesetSelf(ArrayList, ArrayList)
+				Collections.swap(obtainedPokemonStats, pokemon1 - 1, pokemon2 - 1);
+				Collections.swap(hpOfPokes, pokemon1 - 1, pokemon2 - 1);
+				Collections.swap(battle.movesetSelf, pokemon1 - 1, pokemon2 - 1);
+			
+			}
+			else
+			{
+				System.out.println("you did something wrong. Do you want to retry?(yes/no)");
+				int whileWrong = 0;
+				while(whileWrong == 0)
+				{
+					choice = input.nextLine();
+					if(choice.equals("no"))
+					{
+						escape = 0;
+						whileWrong = 1;
+					}
+					else if(choice.equals("yes"))
+					{
+						escape = 1;
+						whileWrong = 1;
+					}
+					else
+					{
+						System.out.println("what did you say?");
+					}
+				}
+			}
+		}
+	}
+	
     public static String getPokemon(int index)
     {
     return pokemon[index];   
@@ -48,7 +153,7 @@ public class Pokemon
     //example, addPoke(getWildPokeRawStats(pokemonkind, level))
     public static ArrayList getWildPokeRawStats(int pokemonKind, int level)
     {
-         // pokemonnumber, pokemonlevel, hpiv, atkiv,defiv,spatkiv,spdefiv,speediv, hpev, atkev, defev,spatkev, spdefev, speedev
+         // pokemonnumber, pokemonlevel, hpiv, atkiv,defiv,spatkiv,spdefiv,speediv, hpev, atkev, defev,spatkev, spdefev, speedev, xp
          ArrayList<Integer> individualPokemonStats = new ArrayList<Integer>();
          rawStats.add(pokemonKind);
          rawStats.add(level);
@@ -64,6 +169,7 @@ public class Pokemon
          rawStats.add(0);
          rawStats.add(0);
          rawStats.add(0);
+		 rawStats.add(0);//xp
          return rawStats;
     }
     

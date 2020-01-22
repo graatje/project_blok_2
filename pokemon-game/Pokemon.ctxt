@@ -1,13 +1,15 @@
 #BlueJ class context
 comment0.target=Pokemon
-comment1.params=index
-comment1.target=java.lang.String\ getPokemon(int)
-comment2.params=rawStats
-comment2.target=void\ addPoke(java.util.ArrayList)
-comment3.params=pokemonKind\ level
-comment3.target=java.util.ArrayList\ getWildPokeRawStats(int,\ int)
-comment4.params=rawStats
-comment4.target=java.util.ArrayList\ convertToStats(java.util.ArrayList)
-comment5.params=index\ hp
-comment5.target=void\ setCurrenthp(int,\ int)
-numComments=6
+comment1.params=rawStats\ level
+comment1.target=void\ getXp(java.util.ArrayList,\ int)
+comment2.params=index
+comment2.target=java.lang.String\ getPokemon(int)
+comment3.params=rawStats
+comment3.target=void\ addPoke(java.util.ArrayList)
+comment4.params=pokemonKind\ level
+comment4.target=java.util.ArrayList\ getWildPokeRawStats(int,\ int)
+comment5.params=rawStats
+comment5.target=java.util.ArrayList\ convertToStats(java.util.ArrayList)
+comment6.params=index\ hp
+comment6.target=void\ setCurrenthp(int,\ int)
+numComments=7
