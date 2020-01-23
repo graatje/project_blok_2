@@ -69,10 +69,11 @@ import java.util.ArrayList;
     }
     public void printBag()
     {
-        Main.print("Your bag contains the following items;");
         for(int i = 0; i < Room.bag.size(); i++)
         {
-            Main.print(i+1 + ") " + Room.bag.get(i));
+            String item = Room.bag.get(i);
+            item = item.substring(0, 1).toUpperCase() + item.substring(1);
+            Main.print("> " + (i + 1) + " - " + item);
         }
     }
     public void printRooms() //developer only
@@ -97,18 +98,36 @@ import java.util.ArrayList;
         }
     }
     
-    private String getRoomMessage(int x, int y) //gives message after entering a room
+    private void printRoomMessage(int x, int y) //gives message after entering a room
     {
         for(int i = 0; i < rooms.size(); i++)
         {
             //checks if coordinates matches 1 of the rooms, if it does, (which should always be the case) a message will be shown. 
            if(rooms.get(i).get(0) == x && rooms.get(i).get(1) == y)
            {
-               resultMessage = Room.message(rooms.get(i).get(2)) + " " + Room.actionFromRoomContent(i, rooms.get(i).get(3), rooms.get(i).get(4));
-               return resultMessage;
+                int contentNumber = rooms.get(i).get(3);
+                int itemNumber = rooms.get(i).get(4);
+
+                Main.print(Room.message(rooms.get(i).get(2)) + " " + Room.actionFromRoomContent(i, contentNumber, itemNumber));
+
+                // Check if the user can pick the item up.
+                if(contentNumber == 0) {
+                    Main.print("[?] Would you like to pick this item up?");
+                    String answer = Main.input.next();
+                    if(answer.equalsIgnoreCase("yes")) {
+                        if(Room.bag.size() >= 5) {
+                            Main.print("[Note] You cannot carry more than 5 items.");
+                            return;
+                        }
+                        
+                        Room.addItemToBag(i, itemNumber);
+                        Main.print("[Note] You picked up the item.");
+                    } else {
+                        Main.print("[Note] You chose not to pick up the item.");
+                    }
+                }
            }
         }
-        return "There was no return, in other words, a bug.";
     }
      
     public ArrayList getRoom(int x, int y) {
@@ -136,7 +155,7 @@ import java.util.ArrayList;
             coordinates.add(y);
             history.add(coordinates);
             
-            Main.print(getRoomMessage(x, y));
+            printRoomMessage(x, y);
     
             ArrayList<Integer> room = getRoom(x, y);
             Integer type = room.get(3);

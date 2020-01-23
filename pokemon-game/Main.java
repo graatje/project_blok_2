@@ -66,7 +66,24 @@ public class Main
             } else if(command.equals("right")) {
                 game.move(1, 0);
             } else if(command.equals("bag")) {
+                print("[Note] You are carrying the following items");                
                 game.printBag();
+            } else if(command.contains("drop")) {
+                print("[?] What item would you like to drop?");
+                game.printBag();
+                print("[?] Enter the number of the item.");
+
+                int toDrop = input.nextInt();
+                if(toDrop > Room.bag.size() || toDrop == 0) {
+                    print("[Note] Could not find the item to drop.");
+                } else {
+                    print("[Note] Are you sure? This action is irreversible.");
+                    String confirm = input.next();
+
+                    if(confirm.equalsIgnoreCase("yes")) {
+                        Item.drop(toDrop);
+                    }else print("[Note] You did not drop the item.");    
+                }
             } else if (command.equals("pokemon")){
                 print("[Note] You are carrying the following pokemon");                
                 Pokemon.printPokemon();

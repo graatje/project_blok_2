@@ -50,16 +50,17 @@ public class Room
     {
         switch(contentNumber)
         {
-            case 0:
-                addItemToBag(roomInfo, itemNumber);
+            case 0:                
                 return "Something is shining in the corner, it is a " + Item.get_Item_In_Room(itemNumber) + "!";
             case 1:
                 return "Something is shining in the corner, it is the pokemon " + Pokemon.getPokemon(itemNumber) + "!";
             case 2:
                 return "There seems to be nothing inside this room.";
             case 3:
-                // We should check if the user has a key in his inventory
-                return "It seems to be locked, a key is required.";
+                // If the user has a key in his inventory, start battle, if not, make him find the key.
+                if(bag.contains("key")) {
+                    return "It seems that the key fits..\n[?] Would you like to enter the gym and start the final battle?";
+                }else return "It seems to be locked.";
             default:
                 return "There is nothing in this room.";
         }
