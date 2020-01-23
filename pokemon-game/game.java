@@ -1,21 +1,26 @@
 import java.util.ArrayList;
-    public class Game
+public class game
+{
+    
+ 
+    
+    
+// pokemonnumber, pokemonlevel, hpiv, atkiv,defiv,spatkiv,spdefiv,speediv, hpev, atkev, defev,spatkev, spdefev, speedev
+//discussion, do i need an id? isn't it stored in the index?
+//preparing variables
+    int numberOfMovements;
+    //define int n = 1 if bug
+    int x;
+    int y;
+    int thesize;
+    String resultMessage;
+    int roomType;
+    ArrayList<ArrayList<Integer> > history = new ArrayList<ArrayList<Integer> >();
+    public static ArrayList<ArrayList<Integer> > rooms = new ArrayList<ArrayList<Integer> >();
+    
+    //constructor
+    game(int size)
     {
-        // pokemonnumber, pokemonlevel, hpiv, atkiv,defiv,spatkiv,spdefiv,speediv, hpev, atkev, defev,spatkev, spdefev, speedev
-        //discussion, do i need an id? isn't it stored in the index?
-        //preparing variables
-        int numberOfMovements;
-        //define int n = 1 if bug
-        int x;
-        int y;
-        int thesize;
-        String resultMessage;
-        int roomType;
-        ArrayList<ArrayList<Integer> > history = new ArrayList<ArrayList<Integer> >();
-        public static ArrayList<ArrayList<Integer> > rooms = new ArrayList<ArrayList<Integer> >();
-        
-        //constructor
-       Game(int size){
         if (size < 4 || size > 30) 
         {
             throw new IllegalArgumentException("size must be between 4 and 30");
@@ -47,7 +52,7 @@ import java.util.ArrayList;
                 // the arraylist will be like x coordinate, y coordinate, roomtype int, content type int, specific content type int
             }
         }
-    
+
         //setting up variables
         numberOfMovements = 0;
         thesize = size;
@@ -61,14 +66,13 @@ import java.util.ArrayList;
     }
     public void printBag()
     {
-        Main.print("Your bag contains the following items;");
-        for(int i = 0; i < Room.bag.size(); i++)
+        for(int i = 0; i <Room.bag.size(); i++)
         {
-            Main.print(i+1 + ") " + Room.bag.get(i));
+            System.out.print(Room.bag.get(i));
         }
     }
     public void printRooms() //developer only
-        {
+    {
         for(int i = 0; i < rooms.size(); i++)
         {
             for(int j = 0; j < rooms.get(i).size(); j++)
@@ -77,7 +81,7 @@ import java.util.ArrayList;
             }
         }
     }
-    
+
     public void printHistory() //developer only
     {
         for(int i = 0; i < history.size(); i++)
@@ -88,63 +92,93 @@ import java.util.ArrayList;
             }
         }
     }
-    
+
     private String getRoomMessage(int x, int y) //gives message after entering a room
     {
         for(int i = 0; i < rooms.size(); i++)
         {
-            //checks if coordinates matches 1 of the rooms, if it does, (which should always be the case) a message will be shown. 
+            //checks if coordinates matches 1 of the rooms, if it does, (which should always be the case) a message will be showed. 
            if(rooms.get(i).get(0) == x && rooms.get(i).get(1) == y)
            {
-               resultMessage = Room.message(rooms.get(i).get(2)) + " " + Room.actionFromRoomContent(i, rooms.get(i).get(3), rooms.get(i).get(4));
+               resultMessage = Room.message(rooms.get(i).get(2)) + Room.actionFromRoomContent(i, rooms.get(i).get(3), rooms.get(i).get(4));
                return resultMessage;
            }
         }
-        return "There was no return, in other words, a bug.";
-    }
-     
-    public ArrayList getRoom(int x, int y) {
-        for(int i = 0; i < rooms.size(); i++) {
-           if(rooms.get(i).get(0) == x && rooms.get(i).get(1) == y) {
-               return rooms.get(i);
-           }
-        }
-        
-        throw new IllegalArgumentException("Could not find a room on this location.");
+        return "there was no return, in other words, a bug";
     }
     
-    public void move(Integer addX, Integer addY) {
-        // Check if the movement will put the player out of bounds
-        if(x + addX >= thesize || y + addY >= thesize || x + addX < 0 || y + addY < 0) {
-            System.out.println("It seems like the road is blocked, you cannot go any further.");      
-        }else{
-            numberOfMovements++;
-        
-            x += addX;
-            y += addY;
-            
+    public void moveNorth()
+    {
+        if(y-1 < 0)
+        {
+            System.out.println("god said no");
+        }
+        else
+        {
             ArrayList<Integer> coordinates = new ArrayList<Integer>();
+            numberOfMovements += 1;
+            y -= 1;
             coordinates.add(x);
             coordinates.add(y);
             history.add(coordinates);
-            
-            Main.print(getRoomMessage(x, y));
-    
-            ArrayList<Integer> room = getRoom(x, y);
-            Integer type = room.get(3);
-            
-            // Whenever a pokemon was found in the room..
-            if(type == 1) {                
-                Main.print("What would you like to do?");
-                
-                // There should be 3 following commands which may be executed.
-                Main.print("* Fight");
-                Main.print("* Run");
-            }
+            System.out.println(getRoomMessage(x, y));
+        }
+    }
 
+    public void moveEast()
+    {
+        if(x+1 >= thesize)
+        {
+            System.out.println("god said no");
+        }
+        else
+        {
+            ArrayList<Integer> coordinates = new ArrayList<Integer>();
+            numberOfMovements += 1;
+            x += 1;
+            coordinates.add(x);
+            coordinates.add(y);
+            history.add(coordinates);
+            System.out.println(getRoomMessage(x, y));
+        }
+    }
+
+    public void moveSouth()
+    {
+        if(y+1 >= thesize)
+        {
+            System.out.println("god said no");
+        }
+        else
+        {
+            ArrayList<Integer> coordinates = new ArrayList<Integer>();
+            numberOfMovements += 1;
+            y += 1;
+            coordinates.add(x);
+            coordinates.add(y);
+            history.add(coordinates);
+            System.out.println(getRoomMessage(x, y));
         }
     }
     
+    public void moveWest()
+    {
+        if(x-1 < 0)
+        {
+            System.out.println("god said no");
+        }
+        else
+        {
+            ArrayList<Integer> coordinates = new ArrayList<Integer>();
+            numberOfMovements += 1;
+            x -= 1;
+            coordinates.add(x);
+            coordinates.add(y);
+            history.add(coordinates);
+            System.out.println(getRoomMessage(x, y));
+        }
+    }
+
     public void back()
     {
         numberOfMovements -= 1;
@@ -163,6 +197,9 @@ import java.util.ArrayList;
 
     public void printCoordinates()        //developer only. ?
     {
-        System.out.println(getCoordinates());
+        for(int i = 0; i < getCoordinates().size(); i++)
+        {
+            System.out.println(getCoordinates().get(i));
+        }
     }
 }
