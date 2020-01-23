@@ -44,6 +44,7 @@ public class Moves
     }
     public static ArrayList acid()
     {
+		
         ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(40);
         moveInfo.add(1);
@@ -55,6 +56,7 @@ public class Moves
     }
     public static ArrayList acidArmor()
     {
+		
          ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(0);//dmg
         moveInfo.add(2);//dmgtype
@@ -233,7 +235,7 @@ public class Moves
     }
     public static ArrayList crabHammer()
     {
-         ArrayList<Integer> moveInfo = new ArrayList<Integer>();
+      ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(100);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(90);//accuracy
@@ -244,7 +246,8 @@ public class Moves
     }
     public static ArrayList cut()
     {
-         ArrayList<Integer> moveInfo = new ArrayList<Integer>();
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
+         
         moveInfo.add(50);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(95);//accuracy
@@ -255,7 +258,8 @@ public class Moves
     }
     public static ArrayList defenseCurl()
     {
-         ArrayList<Integer> moveInfo = new ArrayList<Integer>();
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
+         
         moveInfo.add(0);//dmg
         moveInfo.add(2);//dmgtype
         moveInfo.add(110);//accuracy
@@ -266,7 +270,8 @@ public class Moves
     }
     public static ArrayList dizyPunch()
     {
-         ArrayList<Integer> moveInfo = new ArrayList<Integer>();
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
+         
         moveInfo.add(70);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -277,7 +282,7 @@ public class Moves
     }
     public static ArrayList doubleKick()
     {
-         ArrayList<Integer> moveInfo = new ArrayList<Integer>();
+      ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(60);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -288,6 +293,7 @@ public class Moves
     }
     public static ArrayList doubleSlap()
     {
+
          ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(15 * Room.getRandomNumber(2, 5));//dmg
         moveInfo.add(0);//dmgtype
@@ -299,6 +305,7 @@ public class Moves
     }
     public static ArrayList doubleTeam()
     {
+		 
          ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(0);//dmg
         moveInfo.add(2);//dmgtype
@@ -310,6 +317,7 @@ public class Moves
     }
     public static ArrayList doubleEdge()
     {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(120);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -320,6 +328,7 @@ public class Moves
     }
     public static ArrayList drillPeck()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(100);//dmg
         moveInfo.add(80);//dmgtype
         moveInfo.add(100);//accuracy
@@ -330,6 +339,7 @@ public class Moves
     }
     public static ArrayList earthquake()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(100);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -340,6 +350,7 @@ public class Moves
     }
     public static ArrayList eggBomb()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(100);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(75);//accuracy
@@ -350,6 +361,7 @@ public class Moves
     }
     public static ArrayList ember()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(40);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -360,6 +372,7 @@ public class Moves
     }
     public static ArrayList fireBlast()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(110);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(85);//accuracy
@@ -370,6 +383,7 @@ public class Moves
     }
     public static ArrayList fissure()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(10000);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(30);//accuracy
@@ -380,6 +394,7 @@ public class Moves
     }
     public static ArrayList flamethrower()
     {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(90);//dmg
         moveInfo.add(1);//dmgtype
         moveInfo.add(100);//accuracy
@@ -390,6 +405,7 @@ public class Moves
     }
     public static ArrayList flash()
     {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(0);//dmg
         moveInfo.add(2);//dmgtype
         moveInfo.add(100);//accuracy
@@ -400,6 +416,7 @@ public class Moves
     }
     public static ArrayList furyAttack()
     {
+	 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(15 * Room.getRandomNumber(2, 5));//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(85);//accuracy
@@ -410,6 +427,7 @@ public class Moves
     }
     public static ArrayList furySwipes()
     {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(18 * Room.getRandomNumber(2, 5));//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(80);//accuracy
@@ -420,6 +438,7 @@ public class Moves
     }
     public static ArrayList growl()
     {
+	ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(0);//dmg
         moveInfo.add(2);//dmgtype
         moveInfo.add(100);//accuracy
@@ -430,6 +449,7 @@ public class Moves
     }
     public static ArrayList guillotine()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
        moveInfo.add(10000);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(30);//accuracy
@@ -440,6 +460,7 @@ public class Moves
     }
     public static ArrayList gust()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                 moveInfo.add(40);//dmg
         moveInfo.add(1);//dmgtype
         moveInfo.add(100);//accuracy
@@ -450,6 +471,7 @@ public class Moves
     }
     public static ArrayList harden()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(0);//dmg
         moveInfo.add(2);//dmgtype
         moveInfo.add(110);//accuracy
@@ -460,6 +482,7 @@ public class Moves
     }
     public static ArrayList headButt()
      {  
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
          moveInfo.add(70);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -470,6 +493,7 @@ public class Moves
     }
     public static ArrayList highJumpKick()
     {
+	ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(130);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(90);//accuracy
@@ -480,6 +504,7 @@ public class Moves
     }
     public static ArrayList hornAttack()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
             moveInfo.add(65);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -490,6 +515,7 @@ public class Moves
     }
     public static ArrayList hornDrill()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(10000);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(30);//accuracy
@@ -500,6 +526,7 @@ public class Moves
     }
     public static ArrayList hydroPump()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(110);//dmg
         moveInfo.add(1);//dmgtype
         moveInfo.add(80);//accuracy
@@ -510,6 +537,7 @@ public class Moves
     }
     public static ArrayList hyperBeam()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(150);//dmg
         moveInfo.add(1);//dmgtype
         moveInfo.add(90);//accuracy
@@ -520,6 +548,7 @@ public class Moves
     }
     public static ArrayList hyperFang()
     {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(80);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(90);//accuracy
@@ -530,6 +559,7 @@ public class Moves
     }
     public static ArrayList iceBeam()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(90);//dmg
         moveInfo.add(1);//dmgtype
         moveInfo.add(100);//accuracy
@@ -540,6 +570,7 @@ public class Moves
     }
     public static ArrayList icePunch()
       {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
           moveInfo.add(75);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -550,6 +581,7 @@ public class Moves
     }
     public static ArrayList jumpKick()
     {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(100);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(95);//accuracy
@@ -560,6 +592,7 @@ public class Moves
     }
     public static ArrayList karateChop()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(50);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -570,6 +603,7 @@ public class Moves
     }
     public static ArrayList kinesis()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(0);//dmg
         moveInfo.add(2);//dmgtype
         moveInfo.add(80);//accuracy
@@ -580,6 +614,7 @@ public class Moves
     }
     public static ArrayList leechLife()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(80);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -590,6 +625,7 @@ public class Moves
     }
     public static ArrayList leer()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(0);//dmg
         moveInfo.add(2);//dmgtype
         moveInfo.add(100);//accuracy
@@ -600,6 +636,7 @@ public class Moves
     }
     public static ArrayList lick()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
             moveInfo.add(30);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -610,6 +647,7 @@ public class Moves
     }
     public static ArrayList meditate()
     {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
             moveInfo.add(0);//dmg
         moveInfo.add(2);//dmgtype
         moveInfo.add(110);//accuracy
@@ -620,6 +658,7 @@ public class Moves
     }
     public static ArrayList megaDrain()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
             moveInfo.add(40);//dmg
         moveInfo.add(1);//dmgtype
         moveInfo.add(100);//accuracy
@@ -631,6 +670,7 @@ public class Moves
     
     public static ArrayList megaKick()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                moveInfo.add(120);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(75);//accuracy
@@ -641,6 +681,7 @@ public class Moves
     }
     public static ArrayList megaPunch()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                moveInfo.add(80);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(85);//accuracy
@@ -651,6 +692,7 @@ public class Moves
     }
     public static ArrayList minimize()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(0);//dmg
         moveInfo.add(2);//dmgtype
         moveInfo.add(110);//accuracy
@@ -661,6 +703,7 @@ public class Moves
     }
     public static ArrayList payDay()
     {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                moveInfo.add(40);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -671,6 +714,7 @@ public class Moves
     }
     public static ArrayList peck()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                moveInfo.add(35);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -681,6 +725,7 @@ public class Moves
     }
     public static ArrayList pinMissile()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                moveInfo.add(25 * Room.getRandomNumber(2, 5));//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(95);//accuracy
@@ -691,6 +736,7 @@ public class Moves
     }
     public static ArrayList poisonSting()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                 moveInfo.add(15);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -701,6 +747,7 @@ public class Moves
     }
     public static ArrayList pound()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                    moveInfo.add(40);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -711,6 +758,7 @@ public class Moves
     }
     public static ArrayList psybeam()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                    moveInfo.add(65);//dmg
         moveInfo.add(1);//dmgtype
         moveInfo.add(100);//accuracy
@@ -721,6 +769,7 @@ public class Moves
     }
     public static ArrayList psychic()
     {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                       moveInfo.add(90);//dmg
         moveInfo.add(1);//dmgtype
         moveInfo.add(100);//accuracy
@@ -731,6 +780,7 @@ public class Moves
     }
     public static ArrayList quickAttack()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                      moveInfo.add(40);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -741,6 +791,7 @@ public class Moves
     }
     public static ArrayList razorLeaf()
     {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                       moveInfo.add(55);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(95);//accuracy
@@ -751,6 +802,7 @@ public class Moves
     }
     public static ArrayList rockSlide()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                       moveInfo.add(75);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(90);//accuracy
@@ -761,6 +813,7 @@ public class Moves
     }
     public static ArrayList rockThrow()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                       moveInfo.add(50);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(90);//accuracy
@@ -771,6 +824,7 @@ public class Moves
     }
     public static ArrayList rollingKick()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                       moveInfo.add(60);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(85);//accuracy
@@ -782,6 +836,7 @@ public class Moves
     
     public static ArrayList sandAttack()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                       moveInfo.add(0);//dmg
         moveInfo.add(2);//dmgtype
         moveInfo.add(100);//accuracy
@@ -792,6 +847,7 @@ public class Moves
     }
     public static ArrayList scratch()
     {
+	ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                       moveInfo.add(40);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -802,6 +858,7 @@ public class Moves
     }
     public static ArrayList screech()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                                 moveInfo.add(0);//dmg
         moveInfo.add(2);//dmgtype
         moveInfo.add(85);//accuracy
@@ -812,6 +869,7 @@ public class Moves
     }
     public static ArrayList sharpen()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                                 moveInfo.add(0);//dmg
         moveInfo.add(2);//dmgtype
         moveInfo.add(120);//accuracy
@@ -822,6 +880,7 @@ public class Moves
     }
     public static ArrayList slam()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(80);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(75);//accuracy
@@ -832,6 +891,7 @@ public class Moves
     }
     public static ArrayList slash()
     {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
             moveInfo.add(70);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -842,6 +902,7 @@ public class Moves
     }
     public static ArrayList sludge()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
             moveInfo.add(65);//dmg
         moveInfo.add(1);//dmgtype
         moveInfo.add(100);//accuracy
@@ -852,6 +913,7 @@ public class Moves
     }
     public static ArrayList smog()
     {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
              moveInfo.add(30);//dmg
         moveInfo.add(1);//dmgtype
         moveInfo.add(70);//accuracy
@@ -862,6 +924,7 @@ public class Moves
     }
     public static ArrayList smokescreen()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                       moveInfo.add(0);//dmg
         moveInfo.add(2);//dmgtype
         moveInfo.add(100);//accuracy
@@ -872,6 +935,7 @@ public class Moves
     }
     public static ArrayList spikeCannon()
     {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                       moveInfo.add(20 * Room.getRandomNumber(2, 5));//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -882,6 +946,7 @@ public class Moves
     }
     public static ArrayList splash()
     {
+	ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                       moveInfo.add(0);//dmg
         moveInfo.add(2);//dmgtype
         moveInfo.add(1);//accuracy
@@ -892,6 +957,7 @@ public class Moves
     }
     public static ArrayList stomp()
     {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                       moveInfo.add(65);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -902,6 +968,7 @@ public class Moves
     }
     public static ArrayList strength()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                    moveInfo.add(80);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -912,6 +979,7 @@ public class Moves
     }
     public static ArrayList stringShot()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                    moveInfo.add(0);//dmg
         moveInfo.add(2);//dmgtype
         moveInfo.add(95);//accuracy
@@ -922,6 +990,7 @@ public class Moves
     }
     public static ArrayList submission()
     {
+	 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                    moveInfo.add(80);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(80);//accuracy
@@ -932,7 +1001,8 @@ public class Moves
     }
     public static ArrayList surf()
     {
-                moveInfo.add(90);//dmg
+           ArrayList<Integer> moveInfo = new ArrayList<Integer>();
+		   moveInfo.add(90);//dmg
         moveInfo.add(1);//dmgtype
         moveInfo.add(80);//accuracy
        moveInfo.add(2);//type
@@ -942,6 +1012,7 @@ public class Moves
     }
     public static ArrayList swift()
     {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                   moveInfo.add(60);//dmg
         moveInfo.add(1);//dmgtype
         moveInfo.add(1000);//accuracy
@@ -952,6 +1023,7 @@ public class Moves
     }
     public static ArrayList swordsDance()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                          moveInfo.add(0);//dmg
         moveInfo.add(2);//dmgtype
         moveInfo.add(1000);//accuracy
@@ -962,6 +1034,7 @@ public class Moves
     }
     public static ArrayList tackle()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                    moveInfo.add(40);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -972,6 +1045,7 @@ public class Moves
     }
     public static ArrayList tailWhip()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
                         moveInfo.add(0);//dmg
         moveInfo.add(2);//dmgtype
         moveInfo.add(100);//accuracy
@@ -982,6 +1056,7 @@ public class Moves
     }
     public static ArrayList thrash()
     {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
           moveInfo.add(120);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -992,6 +1067,7 @@ public class Moves
     }
     public static ArrayList thunder()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
           moveInfo.add(110);//dmg
         moveInfo.add(1);//dmgtype
         moveInfo.add(70);//accuracy
@@ -1002,6 +1078,7 @@ public class Moves
     }
     public static ArrayList thunderPunch()
     {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
           moveInfo.add(75);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -1012,6 +1089,7 @@ public class Moves
     }
     public static ArrayList thunderShock()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
           moveInfo.add(40);//dmg
         moveInfo.add(1);//dmgtype
         moveInfo.add(100);//accuracy
@@ -1022,6 +1100,7 @@ public class Moves
     }
     public static ArrayList thunderbolt()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
            moveInfo.add(90);//dmg
         moveInfo.add(1);//dmgtype
         moveInfo.add(100);//accuracy
@@ -1032,6 +1111,7 @@ public class Moves
     }
     public static ArrayList triAttack()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
          moveInfo.add(80);//dmg
         moveInfo.add(1);//dmgtype
         moveInfo.add(100);//accuracy
@@ -1042,6 +1122,7 @@ public class Moves
     }
     public static ArrayList twineedle()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
               moveInfo.add(50);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -1052,6 +1133,7 @@ public class Moves
     }
     public static ArrayList vineWhip()
     {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
           moveInfo.add(45);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -1062,6 +1144,7 @@ public class Moves
     }
     public static ArrayList viseGrip()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
           moveInfo.add(55);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -1072,6 +1155,7 @@ public class Moves
     }
     public static ArrayList waterGun()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
         moveInfo.add(40);//dmg
         moveInfo.add(1);//dmgtype
         moveInfo.add(100);//accuracy
@@ -1082,6 +1166,7 @@ public class Moves
     }
     public static ArrayList waterfall()
     {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
              moveInfo.add(80);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -1092,6 +1177,7 @@ public class Moves
     }
     public static ArrayList wingAttack()
     {
+		ArrayList<Integer> moveInfo = new ArrayList<Integer>();
              moveInfo.add(60);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(100);//accuracy
@@ -1102,6 +1188,7 @@ public class Moves
     }
     public static ArrayList withdraw()
     {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
          moveInfo.add(0);//dmg
         moveInfo.add(2);//dmgtype
         moveInfo.add(1000);//accuracy
@@ -1112,6 +1199,7 @@ public class Moves
     }
     public static ArrayList wrap()
     {
+		 ArrayList<Integer> moveInfo = new ArrayList<Integer>();
             moveInfo.add(15);//dmg
         moveInfo.add(0);//dmgtype
         moveInfo.add(90);//accuracy
