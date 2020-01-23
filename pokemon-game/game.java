@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-    public class game
+    public class Game
     {
         // pokemonnumber, pokemonlevel, hpiv, atkiv,defiv,spatkiv,spdefiv,speediv, hpev, atkev, defev,spatkev, spdefev, speedev
         //discussion, do i need an id? isn't it stored in the index?
@@ -15,14 +15,13 @@ import java.util.ArrayList;
         public static ArrayList<ArrayList<Integer> > rooms = new ArrayList<ArrayList<Integer> >();
         
         //constructor
-       game(int size){
+       Game(int size){
         if (size < 4 || size > 30) 
         {
             throw new IllegalArgumentException("size must be between 4 and 30");
         }
         
         //generate rooms
-
         // Location of the key (key cannot be found on the borders)
         ArrayList<Integer> keyLocation = new ArrayList<Integer>();
         keyLocation.add(Room.getRandomNumber(1, size - 1));
@@ -53,7 +52,7 @@ import java.util.ArrayList;
                     if(ysize == (keyLocation.get(1) - 1) && xsize == (keyLocation.get(0) - 1)) {
                         // Location of key
                         roomInfo.add(3);
-                    }else roomInfo.add(Room.getRandomNumber(0, 2));//item type 
+                    }else roomInfo.add(Room.getRandomNumber(0, 2));//item type
                 }
                 else if(roomInfo.get(3) == 1)
                 {
@@ -67,8 +66,6 @@ import java.util.ArrayList;
                 // the arraylist will be like x coordinate, y coordinate, roomtype int, content type int, specific content type int
             }
         }
-
-        // RoomInfo.set(getRandomNumber(1, size - 1), getRandomNumber(1, size-1)
     
         //setting up variables
         numberOfMovements = 0;
@@ -189,12 +186,11 @@ import java.util.ArrayList;
                     case 1:
                         // Start battle
                         ArrayList<Integer> opponentRawStats = Pokemon.getWildPokeRawStats(pokemon, 1);
-                        ArrayList<Integer> opponentConvertedStats = Pokemon.convertToStats(opponentRawStats);
 
                         battle b = new battle();
 
                         // Main.print("Raw stats are " + opponentRawStats);
-                        b.theBattle(opponentRawStats, opponentConvertedStats);
+                        b.theBattle(opponentRawStats);
                         break;
                     default:
                         Main.print("[Note] You got away safely!");

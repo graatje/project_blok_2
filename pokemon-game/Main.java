@@ -9,7 +9,7 @@ public class Main
         print("[?] How big would you like the map to be?\n[?] Enter a size from 5 to 30.\n[Note] You should keep in mind that having a smaller map does not mean the game will be easier.");
 
         int size = input.nextInt();
-        game g = new game(size);
+        Game game = new Game(size);
 
         // print("[Note] It is time for you to make your first few steps in this mythical world full of creatures.");
         // print("[Note] Your goal will be to defeat your first pokemon gym and obtain a badge.");
@@ -58,31 +58,26 @@ public class Main
             // end check 
 
             if(command.equals("up")) {
-                g.move(0, 1);
+                game.move(0, 1);
             } else if(command.equals("down")) {
-                g.move(0, -1);
+                game.move(0, -1);
             } else if(command.equals("left")) {
-                g.move(-1, 0);
+                game.move(-1, 0);
             } else if(command.equals("right")) {
-                g.move(1, 0);
+                game.move(1, 0);
             } else if(command.equals("bag")) {
                 print("[Note] You are carrying the following items");                
-                g.printBag();
-            } else if(command.equals("use")) {
-                //TO-DO
-                print("[?] What item would you like to use?");
-                g.printBag();
-                print("[?] Enter the number of the item.");
-            } else if(command.equals("drop")) {
+                game.printBag();
+            } else if(command.contains("drop")) {
                 print("[?] What item would you like to drop?");
-                g.printBag();
+                game.printBag();
                 print("[?] Enter the number of the item.");
 
                 int toDrop = input.nextInt();
                 if(toDrop > Room.bag.size() || toDrop == 0) {
                     print("[Note] Could not find the item to drop.");
                 } else {
-                    print("[?] Are you sure? This action is irreversible.");
+                    print("[Note] Are you sure? This action is irreversible.");
                     String confirm = input.next();
 
                     if(confirm.equalsIgnoreCase("yes")) {

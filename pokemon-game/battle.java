@@ -421,7 +421,7 @@ public class battle
                     choice = false;
                     while(!choice)
                     {
-                        System.out.println("what move will you do?(1 till " + movesetSelf.get(inbattlePokemon - 1).size() / 6 + ")");
+                        System.out.println("what move will you do?(1 till " + movesetSelf.get(inbattlePokemon - 1).size() + ")");
                         pickedMove = input.nextInt() - 1;
                         if(pickedMove >= 0 && pickedMove < movesetSelf.get(inbattlePokemon - 1).size())
                         {
@@ -498,7 +498,7 @@ public class battle
                         while(!choice)
                         {
 							
-                            System.out.println("what move will you do?(1 till " + (movesetSelf.get(inbattlePokemon - 1).size() / 6) + ")");
+                            System.out.println("what move will you do?(1 till " + (movesetSelf.get(inbattlePokemon - 1).size()) + ")");
                             pickedMove = input.nextInt() - 1;
 							
                             if(pickedMove >= 0 && pickedMove < movesetSelf.get(inbattlePokemon).size())

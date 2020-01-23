@@ -190,6 +190,22 @@ static ArrayList[][] learnset = {{Moves.vineWhip(), Moves.tackle(), Moves.razorL
 		 rawStats.add(0);//xp
          return rawStats;
     }
+	
+	public static void printPokemon() {
+		for(int x = 0; x < obtainedPokemonStats.size(); x++) {
+			ArrayList<Integer> stats = obtainedPokemonStats.get(x);
+			String pokemon = getPokemon(stats.get(0));
+			ArrayList<Integer> personalStats = convertToStats(stats);
+			int maxHealthPoints = personalStats.get(0);
+			int currentHealthPoints = hpOfPokes.get(0);
+			int level = stats.get(1);
+
+			pokemon = pokemon.substring(0, 1).toUpperCase() + pokemon.substring(1);
+
+			// - " + (x + 1) + "
+			Main.print("> [Lvl. " + level + "] " + pokemon + " (" + currentHealthPoints + "hp / " + maxHealthPoints + "hp)");
+		}
+	}
     
     public static ArrayList convertToStats(ArrayList rawStats)
     {
