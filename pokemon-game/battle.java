@@ -11,12 +11,12 @@ public class battle
     int maxLevel;
     int wildPokeLevel;
     int currentStatIndex;
-	int individualPokemonHp;
+    int individualPokemonHp;
     int total;
     ArrayList ownConvertedStats = new ArrayList();
     int level;
     int damage;
-    static ArrayList<ArrayList> movesetSelf = new ArrayList<ArrayList>();
+    static ArrayList<ArrayList<ArrayList>> movesetSelf = new ArrayList<ArrayList<ArrayList>>();
     int statIndex;
     ArrayList<Integer> moveInfo = new ArrayList<Integer>();;
     int kindOfDmg;
@@ -28,9 +28,14 @@ public class battle
     ArrayList<ArrayList> movesetEnemy = new ArrayList<ArrayList>();
     double modifier2;
     ArrayList<Double> inBattleStats = new ArrayList<Double>();
+    ArrayList<Integer> opponentConvertedStats = new ArrayList<Integer>();
     // attack(0), defense(1), special attack(2), special defense(3), speed(4), accuracy(5), evasion(6), atkOpponent(7), defOpponent(8), specAtkOpponent(9), specDefOpponent(10), speedOpponent(11), accuracyOpponent(12), evasionOpponent(13)
     int opponenthp;
     int indexOfStat;
+    String action;
+    int pickedMove;
+    boolean choice;
+    int tempSwitchIn;
     Scanner input = new Scanner(System.in);
     battle()
     {
@@ -373,7 +378,7 @@ public class battle
                 ownhp = Integer.parseInt(Pokemon.hpOfPokes.get(i).toString());
             }
         }
-        if(ownhp == 0)
+        if(ownhp <= 0)
         {
             return false;
         }
@@ -383,59 +388,233 @@ public class battle
         }
     }
 
-    public void theBattle(ArrayList opponentRawStats, ArrayList opponentConvertedStats)
+    public void theBattle(ArrayList opponentRawStats)
     {
+        ArrayList<Integer> convertedStatsOpponent = new ArrayList<Integer>();
+        opponentConvertedStats =  Pokemon.convertToStats(opponentRawStats);
+        //initializing things for the battle
         for(int i = Pokemon.hpOfPokes.size() - 1; i >= 0; i--)
         {
             if(Integer.parseInt(Pokemon.hpOfPokes.get(i).toString()) != 0)
             {
-                inbattlePokemon = i;
+                inbattlePokemon = i+1;
+				
                 individualPokemonHp = Integer.parseInt(Pokemon.hpOfPokes.get(i).toString());
             }
         }
-        ownConvertedStats = Pokemon.convertToStats(Pokemon.obtainedPokemonStats.get(inbattlePokemon));
+        ownConvertedStats = Pokemon.convertToStats(Pokemon.obtainedPokemonStats.get(inbattlePokemon - 1));
 
-		
-		
         opponenthp = Integer.parseInt(opponentConvertedStats.get(0).toString());
+        System.out.println(opponenthp);
         while(checkIfNotDead() && opponenthp > 0)
         {
-            //if speed 
-            if(Integer.parseInt(ownConvertedStats.get(5).toString()) >= Integer.parseInt(opponentConvertedStats.get(5).toString()))
+			System.out.println("what action will you do?");
+            action = input.nextLine();
+
+            if(action.equals("attack"))
             {
-
-                //attack by yourself
-
-                if(opponenthp > 0 && checkIfNotDead())
+                //if you are faster
+                if(Integer.parseInt(ownConvertedStats.get(5).toString()) >= Integer.parseInt(opponentConvertedStats.get(5).toString()))
                 {
-                    //attackByEnemy(20, 1, opponentRawStats, opponentConvertedStats, ownConvertedStats);
-					System.out.println("attack by enemy");
-                }
-                else if(checkIfNotDead() == true)
-				{
-					System.out.println("You defeated the enemy");
-				}
-				else{
-					System.out.println("game over");
-				}
-                
-                   
-            }
-			else if(Integer.parseInt(ownConvertedStats.get(5).toString()) < Integer.parseInt(opponentConvertedStats.get(5).toString()))
-                {
-                    // attackByEnemy(20, 1, opponentRawStats, opponentConvertedStats, ownConvertedStats);
-                    if(opponenthp > 0 && ownhp > 0)
+
+                    //attack by yourself
+                    choice = false;
+                    while(!choice)
                     {
-                        //attackBySelf(20, 0, ownRawStats, ownConvertedStats, opponentConvertedStats);
+                        System.out.println("what move will you do?(1 till " + movesetSelf.get(inbattlePokemon - 1).size() / 6 + ")");
+                        pickedMove = input.nextInt() - 1;
+                        if(pickedMove >= 0 && pickedMove < movesetSelf.get(inbattlePokemon - 1).size())
+                        {
+                            opponenthp -= attackBySelf(movesetSelf.get(inbattlePokemon - 1).get(pickedMove), Pokemon.obtainedPokemonStats.get(inbattlePokemon - 1), ownConvertedStats, opponentRawStats, opponentConvertedStats);
+                            choice = true;
+                        }
+                        else
+                        {
+                            System.out.println("Are you sure that is between 1 till " + movesetSelf.get(inbattlePokemon).size()/6 + "?");
+                        }
+                    }
+                    if(opponenthp > 0 && Integer.parseInt(Pokemon.hpOfPokes.get(inbattlePokemon - 1).toString()) > 0)
+                    {
+                        Pokemon.hpOfPokes.set(inbattlePokemon - 1, (Integer.parseInt(Pokemon.hpOfPokes.get(inbattlePokemon - 1).toString()) - attackByEnemy(opponentRawStats, Pokemon.obtainedPokemonStats.get(inbattlePokemon -1), opponentConvertedStats, ownConvertedStats)));
+                        System.out.println("you have " + Integer.parseInt(Pokemon.hpOfPokes.get(inbattlePokemon - 1).toString()) + "hp remaining");
+                        System.out.println("attack by enemy");
+                    }
+                    else if(opponenthp <= 0)
+                    {
+                        System.out.println("You defeated the enemy");
+						Pokemon.getXp(inbattlePokemon - 1, Integer.parseInt(opponentRawStats.get(1).toString()));
+                    }
+                    else if(Integer.parseInt(Pokemon.hpOfPokes.get(inbattlePokemon - 1).toString()) <= 0 && checkIfNotDead())
+                    {
+                        System.out.println("your pokemon is dead!");
+                        System.out.println("you can switch the following pokemon in.");
+                        for(int p = 0; p < Pokemon.hpOfPokes.size(); p++)
+                        {
+                            if(Integer.parseInt(Pokemon.hpOfPokes.get(p).toString()) >0)
+                            {
+                                System.out.println(p+ 1);
+                            }
+                        }
+                        choice = true;
+                        while(choice)
+                        {
+                            System.out.println("what pokemon do you want to switch in?");
+                            tempSwitchIn = input.nextInt();
+                            if(tempSwitchIn == inbattlePokemon)
+                            {
+                                System.out.println("that pokemon already is in battle!");
+                            }
+                            else if(tempSwitchIn <1 || tempSwitchIn -1 > Pokemon.hpOfPokes.size())
+                            {
+								System.out.println(Pokemon.hpOfPokes.size());
+                                System.out.println("that is not a valid pokemon");
+                            }
+                            else if(Integer.parseInt(Pokemon.hpOfPokes.get(tempSwitchIn - 1).toString()) <= 0)
+                            {
+                                System.out.println("that pokemon is dead, you can't switch it in!");
+                            }
+                            else
+                            {
+                                inbattlePokemon = tempSwitchIn;
+                                ownConvertedStats = Pokemon.convertToStats(Pokemon.obtainedPokemonStats.get(inbattlePokemon));
+
+                            }
+                        }
+
+                    }
+                    else{
+                        System.out.println("game over");
+                    }
+
+                }
+                // if opponent is faster
+                else if(Integer.parseInt(ownConvertedStats.get(5).toString()) < Integer.parseInt(opponentConvertedStats.get(5).toString()))
+                {
+                    Pokemon.hpOfPokes.set(inbattlePokemon - 1, (Integer.parseInt(Pokemon.hpOfPokes.get(inbattlePokemon - 1).toString()) - attackByEnemy(opponentRawStats, Pokemon.obtainedPokemonStats.get(inbattlePokemon - 1), opponentConvertedStats, ownConvertedStats)));
+                    System.out.println("you have " + Integer.parseInt(Pokemon.hpOfPokes.get(inbattlePokemon - 1).toString()) + "hp remaining");
+                    if(opponenthp > 0 && Integer.parseInt(Pokemon.hpOfPokes.get(inbattlePokemon - 1).toString()) > 0)
+                    {
+                        choice = false;
+                        while(!choice)
+                        {
+							
+                            System.out.println("what move will you do?(1 till " + (movesetSelf.get(inbattlePokemon - 1).size() / 6) + ")");
+                            pickedMove = input.nextInt() - 1;
+							
+                            if(pickedMove >= 0 && pickedMove < movesetSelf.get(inbattlePokemon).size())
+                            {
+								
+                                attackBySelf(movesetSelf.get(inbattlePokemon - 1).get(pickedMove), Pokemon.obtainedPokemonStats.get(inbattlePokemon - 1), ownConvertedStats, opponentRawStats, opponentConvertedStats);
+                                choice = true;
+                            }
+                            else
+                            {
+                                System.out.println("Are you sure that is between 1 till " + movesetSelf.get(inbattlePokemon).size() + "?");
+                            }
+                        }
+                    }
+                    else if(opponenthp <= 0)
+                    {
+                        System.out.println("You defeated the enemy");
+						Pokemon.getXp(inbattlePokemon - 1, Integer.parseInt(opponentRawStats.get(1).toString()));
+                    }
+                    else if(Integer.parseInt(Pokemon.hpOfPokes.get(inbattlePokemon - 1).toString()) <= 0 && checkIfNotDead())
+                    {
+                        System.out.println("your pokemon is dead!");
+                        System.out.println("you can switch the following pokemon in.");
+                        for(int p = 0; p < Pokemon.hpOfPokes.size(); p++)
+                        {
+                            if(Integer.parseInt(Pokemon.hpOfPokes.get(p).toString()) >0)
+                            {
+                                System.out.println(p);
+                            }
+                        }
+						choice = true;
+                        while(choice)
+                    {
+						System.out.println(Pokemon.hpOfPokes.size());
+                        System.out.println("what pokemon do you want to switch in?");
+                        tempSwitchIn = input.nextInt();
+                        if(tempSwitchIn == inbattlePokemon)
+                        {
+                            System.out.println("that pokemon already is in battle!");
+                        }
+                        else if(tempSwitchIn <1 || tempSwitchIn > Pokemon.hpOfPokes.size() +1)
+                        {
+							System.out.println(inbattlePokemon);
+                            System.out.println("that is not a valid pokemon");
+							
+                        }
+                        else if(Integer.parseInt(Pokemon.hpOfPokes.get(tempSwitchIn - 1).toString()) <= 0)
+                        {
+                            System.out.println("that pokemon is dead, you can't switch it in!");
+                        }
+                        else
+                        {
+							
+                            inbattlePokemon = tempSwitchIn;
+                            ownConvertedStats = Pokemon.convertToStats(Pokemon.obtainedPokemonStats.get(inbattlePokemon - 1));
+                             
+							choice = false;
+							System.out.println("that pokemon got switched in");
+						}
+
+                    }
+                    
+
+                }
+				else
+                    {
+                        System.out.println("game over");
+                        //set boolean to false or something
+
                     }
 				}
+			}
+                else if(action.equals("switch"))
+                {
+					
+                    choice = true;
+                    while(choice)
+                    {
+						
+                        System.out.println("what pokemon do you want to switch in?");
+                        tempSwitchIn = input.nextInt();
+                        if(tempSwitchIn == inbattlePokemon)
+                        {
+                            System.out.println("that pokemon already is in battle!");
+							choice = false;
+                        }
+                        else if(tempSwitchIn <1 || tempSwitchIn > Pokemon.hpOfPokes.size() +1)
+                        {
+							
+                            System.out.println("that is not a valid pokemon");
+                        }
+                        else if(Integer.parseInt(Pokemon.hpOfPokes.get(tempSwitchIn - 1).toString()) <= 0)
+                        {
+                            System.out.println("that pokemon is dead, you can't switch it in!");
+                        }
+                        else
+                        {
+							
+                            inbattlePokemon = tempSwitchIn;
+                            ownConvertedStats = Pokemon.convertToStats(Pokemon.obtainedPokemonStats.get(inbattlePokemon - 1));
+                            Pokemon.hpOfPokes.set(inbattlePokemon - 1, (Integer.parseInt(Pokemon.hpOfPokes.get(inbattlePokemon -1).toString()) - attackByEnemy(opponentRawStats, Pokemon.obtainedPokemonStats.get(inbattlePokemon - 1), opponentConvertedStats, ownConvertedStats)));
+                            System.out.println("you have " + Integer.parseInt(Pokemon.hpOfPokes.get(inbattlePokemon - 1).toString()) + "hp remaining");
+							choice = false;
+						}
+                    }
 
+                }
+            }
         }
-	}
-        public boolean hitOrMiss(int accuracy)
-        {
+    
+
+    public boolean hitOrMiss(int accuracy)
+    {
         if(Room.getRandomNumber(1, 100) <= accuracy * (Double.parseDouble(inBattleStats.get(5).toString()) / Double.parseDouble(inBattleStats.get(13).toString())))
         {
+
             return true;
         }
         else
@@ -458,41 +637,70 @@ public class battle
         }
     }
 
-    public void attackBySelf(ArrayList moveInfo, ArrayList rawStats, ArrayList convertedStats, ArrayList convertedStatsOpponent)
+    public int attackBySelf(ArrayList moveInfo, ArrayList rawStats, ArrayList convertedStats, ArrayList rawStatsOpponent, ArrayList convertedStatsOpponent)
     {
         kindOfDmg = Integer.parseInt(moveInfo.get(1).toString());
         if(kindOfDmg == 0)//physical
         {            
             if(hitOrMiss(Integer.parseInt(moveInfo.get(2).toString())))
             {
-                damage = (int) ((((2 * Integer.parseInt(rawStats.get(1).toString()) / 5 + 2) * (Integer.parseInt(moveInfo.get(0).toString())) * Integer.parseInt(convertedStats.get(1).toString()) / Integer.parseInt(convertedStatsOpponent.get(2).toString())) / 50 + 2) * modifier);
+
+                damage = (int)((((2 * Integer.parseInt(rawStats.get(1).toString()) / 5 + 2) * (Integer.parseInt(moveInfo.get(0).toString())) * Integer.parseInt(convertedStats.get(1).toString()) / Integer.parseInt(convertedStatsOpponent.get(2).toString())) / 50 + 2) * effectiveness(Integer.parseInt(moveInfo.get(3).toString()), Integer.parseInt(rawStatsOpponent.get(0).toString())));
+                //idk why but this might fix a bug
                 System.out.println("You did " + damage + "damage!");
-                opponenthp  -= damage;
-                System.out.println("The opponent has " + opponenthp + "hp remeaning");
+                return damage;
             }
-            else if(kindOfDmg == 1)//special
+        }
+        else if(kindOfDmg == 1)//special
+        {
+            if(hitOrMiss(Integer.parseInt(moveInfo.get(2).toString())))
+            {
+                damage = (int)((((2 * Integer.parseInt(rawStats.get(1).toString()) / 5 + 2) * (Integer.parseInt(moveInfo.get(0).toString())) * Integer.parseInt(convertedStats.get(3).toString()) / Integer.parseInt(convertedStatsOpponent.get(4).toString())) / 50 + 2) * effectiveness(Integer.parseInt(moveInfo.get(3).toString()), Integer.parseInt(rawStatsOpponent.get(0).toString())));
+                System.out.println("You did " + damage + "damage!");
+                return damage;
+            }
+        }
+        else if(kindOfDmg == 2)
+        {
+            //detecting change of stats
+            if(Integer.parseInt(moveInfo.get(5).toString()) == 5 || Integer.parseInt(moveInfo.get(5).toString()) == 6 || Integer.parseInt(moveInfo.get(5).toString()) == 12 || Integer.parseInt(moveInfo.get(5).toString()) == 13)
+            {
+                for(int i = 0; i < evanissesAndAccuracy.length; i++)
+                {
+                    if(evanissesAndAccuracy[i] == inBattleStats.get(Integer.parseInt(moveInfo.get(4).toString())))
+                    {
+                        currentStatIndex = i;
+                    }
+                }
+                if(((currentStatIndex + Integer.parseInt(moveInfo.get(5).toString())))< 0)
+
+                {
+                    statIndex = 0;
+                }
+                else if((currentStatIndex + Integer.parseInt(moveInfo.get(5).toString()))> 12)
+                {
+                    statIndex = 12;
+                }
+                else
+                {
+                    statIndex = currentStatIndex + Integer.parseInt(moveInfo.get(5).toString());
+                }
+
+                inBattleStats.set(Integer.parseInt(moveInfo.get(4).toString()), evanissesAndAccuracy[(currentStatIndex + Integer.parseInt(moveInfo.get(5).toString()))]);
+            }
+            else
             {
                 if(hitOrMiss(Integer.parseInt(moveInfo.get(2).toString())))
                 {
-                    damage = (int)(((2 * Integer.parseInt(rawStats.get(1).toString()) / 5 + 2) * (Integer.parseInt(moveInfo.get(0).toString())) * Integer.parseInt(convertedStats.get(3).toString()) / Integer.parseInt(convertedStatsOpponent.get(4).toString())) / 50 + 2);
-                    System.out.println("You did " + damage + "damage!");
-                    opponenthp  -= damage;
-                    System.out.println("The opponent has " + opponenthp + "hp remeaning");
-                }
-            }
-            else if(kindOfDmg == 2)
-            {
-                //detecting change of stats
-                if(Integer.parseInt(moveInfo.get(5).toString()) == 5 || Integer.parseInt(moveInfo.get(5).toString()) == 6 || Integer.parseInt(moveInfo.get(5).toString()) == 12 || Integer.parseInt(moveInfo.get(5).toString()) == 13)
-                {
-                    for(int i = 0; i < evanissesAndAccuracy.length; i++)
+                    for(int i = 0; i < stats.length; i++)
                     {
-                        if(evanissesAndAccuracy[i] == inBattleStats.get(Integer.parseInt(moveInfo.get(4).toString())))
+                        if(stats[i] == inBattleStats.get(Integer.parseInt(moveInfo.get(4).toString())))
                         {
                             currentStatIndex = i;
                         }
                     }
-                    if(((currentStatIndex + Integer.parseInt(moveInfo.get(5).toString())))< 0)
+
+                    if((currentStatIndex + Integer.parseInt(moveInfo.get(5).toString()))< 0)
 
                     {
                         statIndex = 0;
@@ -505,46 +713,18 @@ public class battle
                     {
                         statIndex = currentStatIndex + Integer.parseInt(moveInfo.get(5).toString());
                     }
-
                     inBattleStats.set(Integer.parseInt(moveInfo.get(4).toString()), evanissesAndAccuracy[(currentStatIndex + Integer.parseInt(moveInfo.get(5).toString()))]);
                 }
-                else
-                {
-                    if(hitOrMiss(Integer.parseInt(moveInfo.get(2).toString())))
-                    {
-                        for(int i = 0; i < stats.length; i++)
-                        {
-                            if(stats[i] == inBattleStats.get(Integer.parseInt(moveInfo.get(4).toString())))
-                            {
-                                currentStatIndex = i;
-                            }
-                        }
-
-                        if((currentStatIndex + Integer.parseInt(moveInfo.get(5).toString()))< 0)
-
-                        {
-                            statIndex = 0;
-                        }
-                        else if((currentStatIndex + Integer.parseInt(moveInfo.get(5).toString()))> 12)
-                        {
-                            statIndex = 12;
-                        }
-                        else
-                        {
-                            statIndex = currentStatIndex + Integer.parseInt(moveInfo.get(5).toString());
-                        }
-                        inBattleStats.set(Integer.parseInt(moveInfo.get(4).toString()), evanissesAndAccuracy[(currentStatIndex + Integer.parseInt(moveInfo.get(5).toString()))]);
-                    }
-                    //level is the level of the attacker
-                    //damage = (((2 *level / 5 + 2) * moveDamage * attack / defense)/50 + 2) * modifier;
-                }
+                //level is the level of the attacker
+                //damage = (((2 *level / 5 + 2) * moveDamage * attack / defense)/50 + 2) * modifier;
             }
         }
-	}
+        return -1; //ERROR
+    }
 
-	
-        public void attackByEnemy(ArrayList opponentRawStats, ArrayList ownRawStats, ArrayList convertedStatsOpponent, ArrayList convertedStats)
-        {
+    public int attackByEnemy(ArrayList opponentRawStats, ArrayList ownRawStats, ArrayList convertedStatsOpponent, ArrayList convertedStats)
+    {
+
         //moveInfo has been removed from the parameters, moveInfo will be generated inside this method.
         //making moveset, learns a new move every X levels
 
@@ -560,17 +740,19 @@ public class battle
         else{
             r = Pokemon.learnset[Integer.parseInt(opponentRawStats.get(0).toString())].length;
         }
-        for(int w = r;w >= 0; w--) 
+        for(int w = r - 1;w >= 0; w--) 
         {
-            if(movesetEnemy.size() <= 4)
+
+            if(movesetEnemy.size() < 4)
             {
                 movesetEnemy.add(Pokemon.learnset[Integer.parseInt(opponentRawStats.get(0).toString())][w]);
+				
             }
 
         }
+		
         moveInfo = movesetEnemy.get(Room.getRandomNumber(0, 3));
 
-		
         if(Integer.parseInt(moveInfo.get(1).toString()) == 0)//physical
         {
 
@@ -578,35 +760,34 @@ public class battle
             //                    level   			attack                                                                                defense                                         
             if(hitOrMissEnemy(Integer.parseInt(moveInfo.get(2).toString())))
             {
-                damage = (int)(((((2 * Integer.parseInt(opponentRawStats.get(1).toString()) / 5 + 2) * (Integer.parseInt(moveInfo.get(0).toString())) * (Double.parseDouble(inBattleStats.get(7).toString()) *(Integer.parseInt(convertedStatsOpponent.get(1).toString())))) / (Integer.parseInt(convertedStats.get(2).toString()) * Double.parseDouble(inBattleStats.get(1).toString())))/50 + 2) * effectiveness(Integer.parseInt(moveInfo.get(1).toString()), Integer.parseInt(ownRawStats.get(0).toString())));
+                damage = (int)(((((2 * Integer.parseInt(opponentRawStats.get(1).toString()) / 5 + 2) * (Integer.parseInt(moveInfo.get(0).toString())) * (Double.parseDouble(inBattleStats.get(7).toString()) *(Integer.parseInt(convertedStatsOpponent.get(1).toString())))) / (Integer.parseInt(convertedStats.get(2).toString()) * Double.parseDouble(inBattleStats.get(1).toString())))/50 + 2) * effectiveness(Integer.parseInt(moveInfo.get(3).toString()), Integer.parseInt(ownRawStats.get(0).toString())));
                 System.out.println("the oppenent did " + damage + "damage!");
-                ownhp -= damage;
-                System.out.println("you have " + ownhp + "hp remeaning");
+                return damage;
             }
         }
         else if(Integer.parseInt(moveInfo.get(1).toString()) == 1)//special
         {
             if(hitOrMissEnemy(Integer.parseInt(moveInfo.get(2).toString())))
             {
-                damage = (int)((((2 * Integer.parseInt(opponentRawStats.get(1).toString()) / 5 + 2) * (Integer.parseInt(moveInfo.get(0).toString())) * (Integer.parseInt(convertedStatsOpponent.get(3).toString()) * Double.parseDouble(inBattleStats.get(9).toString()))/ (Integer.parseInt(convertedStats.get(4).toString()) * Double.parseDouble(inBattleStats.get(3).toString()))/50 + 2)) * effectiveness(Integer.parseInt(moveInfo.get(1).toString()), Integer.parseInt(ownRawStats.get(0).toString())));
+                damage = (int)((((2 * Integer.parseInt(opponentRawStats.get(1).toString()) / 5 + 2) * (Integer.parseInt(moveInfo.get(0).toString())) * (Integer.parseInt(convertedStatsOpponent.get(3).toString()) * Double.parseDouble(inBattleStats.get(9).toString()))/ (Integer.parseInt(convertedStats.get(4).toString()) * Double.parseDouble(inBattleStats.get(3).toString()))/50 + 2)) * effectiveness(Integer.parseInt(moveInfo.get(3).toString()), Integer.parseInt(ownRawStats.get(0).toString())));
                 System.out.println("the oppenent did " + damage + "damage!");
-                ownhp -= damage;
-                System.out.println("you have " + ownhp + "hp remeaning");
+                return damage;
             }
         }
 
         else if(Integer.parseInt(moveInfo.get(1).toString()) == 2)//status
         {
+			System.out.println("The enemy did a status attack");
             if(hitOrMissEnemy(Integer.parseInt(moveInfo.get(2).toString())))
             {
                 // attack(0), defense(1), special attack(2), special defense(3), speed(4), accuracy(5), evasion(6), atkOpponent(7), defOpponent(8), specAtkOpponent(9), specDefOpponent(10), speedOpponent(11), accuracyOpponent(12), evasionOpponent(13)
                 if(Integer.parseInt(moveInfo.get(5).toString()) >= 7 && Integer.parseInt(moveInfo.get(5).toString()) < 0)
                 {
-                    indexOfStat = (Integer.parseInt(moveInfo.get(5).toString()) - 7);
+                    indexOfStat = (Integer.parseInt(moveInfo.get(4).toString()) - 7);
                 }
                 else
                 {
-                    indexOfStat = Integer.parseInt(moveInfo.get(5).toString());
+                    indexOfStat = Integer.parseInt(moveInfo.get(4).toString());
                 }
                 //detecting changes
                 if(Integer.parseInt(moveInfo.get(5).toString()) == 5 || Integer.parseInt(moveInfo.get(5).toString()) == 6 || Integer.parseInt(moveInfo.get(5).toString()) == 12 || Integer.parseInt(moveInfo.get(5).toString()) == 13)
@@ -618,15 +799,20 @@ public class battle
                             currentStatIndex = i;
                         }
                     }
+					//try & catch used to be here
                     inBattleStats.set(indexOfStat, stats[(currentStatIndex + moveInfo.get(5))]);
+				
                 }
                 else{
                     for(int i = 0; i<stats.length; i++)
                     {
-                        if(stats[i] == inBattleStats.get(indexOfStat))
+						// try & catch used to be here before
+                        if(stats[i] == Double.parseDouble(inBattleStats.get(indexOfStat).toString()))
                         {
                             currentStatIndex = i;
+							
                         }
+						
 
                     }
                     //putting check to not exceed index
@@ -643,10 +829,70 @@ public class battle
                     {
                         statIndex = currentStatIndex + moveInfo.get(5);
                     }
+					try
+					{
                     inBattleStats.set(indexOfStat, stats[statIndex]);
+					}
+					catch(IndexOutOfBoundsException e)
+					{ 
+					System.out.println("that stat could not be changed anymore");
                 }
             }
         }
+        
+    }
+	return 0;
+	}
+
+    public void testBattle()
+    {
+		
+        Pokemon.addPoke(Pokemon.getWildPokeRawStats(75, 5));
+		
+		Pokemon.addPoke(Pokemon.getWildPokeRawStats(12, 1));
+        
+        theBattle(Pokemon.getWildPokeRawStats(1, 1));
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+	
+    }
+    public void testBattle2()
+    {
+       
+       
+        System.out.println(Pokemon.pokemon[75]);
+        theBattle(Pokemon.getWildPokeRawStats(1, 1));
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+		Pokemon.getXp(1 - 1, 70);
+	
+    }
+    public static void main(String args[])
+    {
+		
+       battle b = new battle();
+	   
+	   b.testBattle();
+	   b.testBattle2();
     }
 }
 

@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-    public class Game
+    public class game
     {
         // pokemonnumber, pokemonlevel, hpiv, atkiv,defiv,spatkiv,spdefiv,speediv, hpev, atkev, defev,spatkev, spdefev, speedev
         //discussion, do i need an id? isn't it stored in the index?
@@ -15,7 +15,7 @@ import java.util.ArrayList;
         public static ArrayList<ArrayList<Integer> > rooms = new ArrayList<ArrayList<Integer> >();
         
         //constructor
-       Game(int size){
+       game(int size){
         if (size < 4 || size > 30) 
         {
             throw new IllegalArgumentException("size must be between 4 and 30");

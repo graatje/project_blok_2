@@ -9,7 +9,7 @@ public class Main
         print("[?] How big would you like the map to be?\n[?] Enter a size from 5 to 30.\n[Note] You should keep in mind that having a smaller map does not mean the game will be easier.");
 
         int size = input.nextInt();
-        Game game = new Game(size);
+        game g = new game(size);
 
         // print("[Note] It is time for you to make your first few steps in this mythical world full of creatures.");
         // print("[Note] Your goal will be to defeat your first pokemon gym and obtain a badge.");
@@ -58,24 +58,24 @@ public class Main
             // end check 
 
             if(command.equals("up")) {
-                game.move(0, 1);
+                g.move(0, 1);
             } else if(command.equals("down")) {
-                game.move(0, -1);
+                g.move(0, -1);
             } else if(command.equals("left")) {
-                game.move(-1, 0);
+                g.move(-1, 0);
             } else if(command.equals("right")) {
-                game.move(1, 0);
+                g.move(1, 0);
             } else if(command.equals("bag")) {
                 print("[Note] You are carrying the following items");                
-                game.printBag();
+                g.printBag();
             } else if(command.equals("use")) {
                 //TO-DO
                 print("[?] What item would you like to use?");
-                game.printBag();
+                g.printBag();
                 print("[?] Enter the number of the item.");
             } else if(command.equals("drop")) {
                 print("[?] What item would you like to drop?");
-                game.printBag();
+                g.printBag();
                 print("[?] Enter the number of the item.");
 
                 int toDrop = input.nextInt();
