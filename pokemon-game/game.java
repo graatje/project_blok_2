@@ -22,6 +22,11 @@ import java.util.ArrayList;
         }
         
         //generate rooms
+
+        // Location of the key (key cannot be found on the borders)
+        ArrayList<Integer> keyLocation = new ArrayList<Integer>();
+        keyLocation.add(Room.getRandomNumber(1, size - 1));
+        keyLocation.add(Room.getRandomNumber(1, size - 1));
         for(int ysize = 0; ysize < size; ysize++)
         {
             for(int xsize = 0; xsize < size; xsize++)
@@ -34,6 +39,10 @@ import java.util.ArrayList;
                     // Location of gym
                     roomInfo.add(5);
                     roomInfo.add(3);
+                } else if(ysize == (keyLocation.get(1) - 1) && xsize == (keyLocation.get(0) - 1)) {
+                    // Location of key, we have to make sure the roomtype is 0 here so there must be an item spawned
+                    roomInfo.add(Room.getRandomNumber(1, 4));
+                    roomInfo.add(0); 
                 } else {
                     roomInfo.add(Room.getRandomNumber(1, 4));//roomtype
                     roomInfo.add(Room.getRandomNumber(0, 2)); //content type
@@ -41,7 +50,10 @@ import java.util.ArrayList;
 
                 if(roomInfo.get(3) == 0)
                 {
-                    roomInfo.add(Room.getRandomNumber(0, 3));//item type
+                    if(ysize == (keyLocation.get(1) - 1) && xsize == (keyLocation.get(0) - 1)) {
+                        // Location of key
+                        roomInfo.add(3);
+                    }else roomInfo.add(Room.getRandomNumber(0, 2));//item type 
                 }
                 else if(roomInfo.get(3) == 1)
                 {
@@ -55,6 +67,8 @@ import java.util.ArrayList;
                 // the arraylist will be like x coordinate, y coordinate, roomtype int, content type int, specific content type int
             }
         }
+
+        // RoomInfo.set(getRandomNumber(1, size - 1), getRandomNumber(1, size-1)
     
         //setting up variables
         numberOfMovements = 0;
@@ -143,7 +157,7 @@ import java.util.ArrayList;
     public void move(Integer addX, Integer addY) {
         // Check if the movement will put the player out of bounds
         if(x + addX >= thesize || y + addY >= thesize || x + addX < 0 || y + addY < 0) {
-            System.out.println("It seems like the road is blocked, you cannot go any further.");      
+            System.out.println("[Note] It seems like the road is blocked, you cannot go any further.");      
         }else{
             numberOfMovements++;
         
@@ -160,13 +174,31 @@ import java.util.ArrayList;
             ArrayList<Integer> room = getRoom(x, y);
             Integer type = room.get(3);
             
-            // Whenever a pokemon was found in the room..
+            // Whenever a pokemon was found in the room.
             if(type == 1) {                
-                Main.print("What would you like to do?");
+                Main.print("[?] What would you like to do?");
                 
-                // There should be 3 following commands which may be executed.
-                Main.print("* Fight");
-                Main.print("* Run");
+                Main.print("> 1 - Battle");
+                Main.print("> 2 - Run");
+
+                Main.print("[?] Enter the respective number of the action you would like to perform.");
+
+                int answer = Main.input.nextInt();
+                int pokemon = room.get(4);
+                switch(answer) {
+                    case 1:
+                        // Start battle
+                        ArrayList<Integer> opponentRawStats = Pokemon.getWildPokeRawStats(pokemon, 1);
+                        ArrayList<Integer> opponentConvertedStats = Pokemon.convertToStats(opponentRawStats);
+
+                        battle b = new battle();
+
+                        // Main.print("Raw stats are " + opponentRawStats);
+                        b.theBattle(opponentRawStats, opponentConvertedStats);
+                        break;
+                    default:
+                        Main.print("[Note] You got away safely!");
+                }
             }
 
         }
