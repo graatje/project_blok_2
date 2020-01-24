@@ -1,23 +1,20 @@
 import java.util.ArrayList;
-    public class Game
-    {
-        // pokemonnumber, pokemonlevel, hpiv, atkiv,defiv,spatkiv,spdefiv,speediv, hpev, atkev, defev,spatkev, spdefev, speedev
-        //discussion, do i need an id? isn't it stored in the index?
-        //preparing variables
-        int numberOfMovements;
-        //define int n = 1 if bug
-       static int x;
-       static int y;
-	   int trapdoorX;
-	   int trapdoorY;
-        int thesize;
-        String resultMessage;
-        int roomType;
-        static ArrayList<ArrayList<Integer> > history = new ArrayList<ArrayList<Integer> >();
-        public static ArrayList<ArrayList<Integer> > rooms = new ArrayList<ArrayList<Integer> >();
-        
-        //constructor
-       Game(int size){
+public class Game {
+    //preparing variables
+    int numberOfMovements;
+    
+    static int x;
+    static int y;
+    int trapdoorX;
+    int trapdoorY;
+    int thesize;
+    String resultMessage;
+    int roomType;
+    static ArrayList<ArrayList<Integer> > history = new ArrayList<ArrayList<Integer> >();
+    public static ArrayList<ArrayList<Integer> > rooms = new ArrayList<ArrayList<Integer> >();
+    
+    //constructor
+    Game(int size){
         if (size < 5 || size > 30) 
         {
             throw new IllegalArgumentException("size must be between 5 and 30");
@@ -101,6 +98,7 @@ import java.util.ArrayList;
         coordinates.add(y);
         history.add(coordinates);
     }
+    
     public void printBag()
     {
         for(int i = 0; i < Room.bag.size(); i++)
@@ -110,29 +108,7 @@ import java.util.ArrayList;
             Main.print("> " + (i + 1) + " - " + item);
         }
     }
-    public static void printRooms() //developer only
-        {
-        for(int i = 0; i < rooms.size(); i++)
-        {
-            for(int j = 0; j < rooms.get(i).size(); j++)
-            {
-                System.out.print(rooms.get(i).get(j) + " ");
-            }
-			System.out.print("\n");
-        }
-	
-    }
-    
-    public void printHistory() //developer only
-    {
-        for(int i = 0; i < history.size(); i++)
-        {
-            for(int j = 0; j < history.get(i).size(); j++)
-            {
-                System.out.print(history.get(i).get(j) + " ");
-            }
-        }
-    }
+
     
     private void printRoomMessage(int x, int y) //gives message after entering a room
     {
@@ -177,8 +153,7 @@ import java.util.ArrayList;
 			
 			x = Room.getRandomNumber(0, Main.size -1);
 			y = Room.getRandomNumber(0, Main.size - 1);
-			// System.out.println("you were teleported to " + x);
-			// System.out.println("you were teleported to " + y);
+			
 			
 		}
 		ArrayList<Integer> coordinates = new ArrayList<Integer>();
@@ -196,8 +171,7 @@ import java.util.ArrayList;
     
     public void move(Integer addX, Integer addY) {
         // Check if the movement will put the player out of bounds
-		// System.out.println(x);
-		// System.out.println(y);
+		
         if(x + addX >= thesize || y + addY >= thesize || x + addX < 0 || y + addY < 0) {
             System.out.println("[Note] It seems like the road is blocked, you cannot go any further.");      
         }else{
@@ -263,16 +237,5 @@ import java.util.ArrayList;
 			}
 		}
 	}
-    private ArrayList getCoordinates()
-    {
-        ArrayList<Integer> coordinates = new ArrayList<Integer>();
-        coordinates.add(x);
-        coordinates.add(y);
-        return coordinates;
-    }
-
-    public void printCoordinates()        //developer only. ?
-    {
-        System.out.println(getCoordinates());
-    }
+      
 }

@@ -33,8 +33,12 @@ public class Room
 				ArrayList<Integer> coordinates = new ArrayList<Integer>();
 				Game.x = Room.getRandomNumber(0, Main.size -1);
 				Game.y = Room.getRandomNumber(0, Main.size - 1);
+<<<<<<< HEAD
 				// System.out.println("you were teleported to " + Game.x);
 				// System.out.println("you were teleported to " + Game.y);
+=======
+				
+>>>>>>> 72cb90dc3624a3eb8f4f20a583d3a26e18c03985
 				coordinates.add(Game.x);
 				coordinates.add(Game.y);
 				Game.history.add(coordinates);
@@ -95,7 +99,11 @@ public class Room
 						}
 						else
 						{
+<<<<<<< HEAD
 							System.out.println("[Loser] Come back whenever you're ready.");
+=======
+							System.out.println("Come back whenever you're ready.");
+>>>>>>> 72cb90dc3624a3eb8f4f20a583d3a26e18c03985
 						}
                 }else return "It seems to be locked.";
 				return "";
