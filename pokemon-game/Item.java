@@ -15,7 +15,7 @@ public class Item
         ArrayList<String> items = new ArrayList<String>();
         items.add("potion");
         items.add("revive");
-        items.add("Poké Ball");
+        items.add("Poke Ball");
         items.add("key");
         retrievedItem = items.get(itemNumber);
         return retrievedItem;

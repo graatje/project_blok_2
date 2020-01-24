@@ -2,12 +2,13 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 public class Main
 {
+	static int size = 0; //this is needed for trapdoor implementation
     static final Scanner input = new Scanner(System.in);
     static boolean isMovable;
   
     public static void main(String args[]) { 
         print("[?] How big would you like the map to be?\n[?] Enter a size from 5 to 30.\n[Note] You should keep in mind that having a smaller map does not mean the game will be easier.");
-		int size = input.nextInt();
+		size = input.nextInt();
 				
         Game game = new Game(size);
 
@@ -25,17 +26,17 @@ public class Main
             switch(pokemon) {
                 // Bulbasaur
                 case 1:
-                    Pokemon.addPoke(Pokemon.getWildPokeRawStats(0, 1));
+                    Pokemon.addPoke(Pokemon.getWildPokeRawStats(0, 5));
                     pickedPokemon = "Bulbasaur";
                     break;
                 // Charmander
                 case 2:
-                    Pokemon.addPoke(Pokemon.getWildPokeRawStats(3, 1));
+                    Pokemon.addPoke(Pokemon.getWildPokeRawStats(3, 5));
                     pickedPokemon = "Charmander";
                     break;
                 // Squirtle
                 case 3:
-                    Pokemon.addPoke(Pokemon.getWildPokeRawStats(6, 1));
+                    Pokemon.addPoke(Pokemon.getWildPokeRawStats(6, 5));
                     pickedPokemon = "Squirtle";
                     break;
                 default:
