@@ -6,12 +6,12 @@ import java.util.ArrayList;
         //preparing variables
         int numberOfMovements;
         //define int n = 1 if bug
-        static int x;
-        static int y;
+       static int x;
+       static int y;
         int thesize;
         String resultMessage;
         int roomType;
-        static ArrayList<ArrayList<Integer>> history = new ArrayList<ArrayList<Integer> >();
+        static ArrayList<ArrayList<Integer> > history = new ArrayList<ArrayList<Integer> >();
         public static ArrayList<ArrayList<Integer> > rooms = new ArrayList<ArrayList<Integer> >();
         
         //constructor
@@ -56,7 +56,7 @@ import java.util.ArrayList;
                 }
                 else if(roomInfo.get(3) == 1)
                 {
-                    roomInfo.add(Room.getRandomNumber(0, 150)); //pokemon
+                    roomInfo.add(Room.getRandomNumber(0, 149)); //pokemon
                 }
                 else
                 {
@@ -65,6 +65,26 @@ import java.util.ArrayList;
                 rooms.add(roomInfo);
                 // the arraylist will be like x coordinate, y coordinate, roomtype int, content type int, specific content type int
             }
+			
+			
+        }
+		int trapdoorX = Room.getRandomNumber(1, size);// cant replace gym, so thats why -1
+		int trapdoorY = Room.getRandomNumber(1, size);
+		while(trapdoorX == Integer.parseInt(keyLocation.get(0).toString()) && trapdoorY == Integer.parseInt(keyLocation.get(1).toString()))
+		{
+			trapdoorX = Room.getRandomNumber(1, size);
+			trapdoorY = Room.getRandomNumber(1, size);
+		}
+		System.out.println("trapdoor");
+		System.out.println(trapdoorX);
+		System.out.println(trapdoorY);
+		for(int i = 0; i < rooms.size(); i++)
+			{ 
+				if(rooms.get(i).get(0) == trapdoorX && rooms.get(i).get(1) == trapdoorY)
+				{
+					rooms.get(i).set(3, 4);
+					rooms.get(i).set(2, 6);
+				}
         }
     
         //setting up variables
@@ -208,6 +228,16 @@ import java.util.ArrayList;
         history.remove(numberOfMovements + 1);
     }
 
+	public static void setItemNumber()
+	{
+		for(int i = 0; i < rooms.size(); i++)
+		{
+			if(rooms.get(i).get(0) == x && rooms.get(i).get(1) == y)
+			{
+				rooms.get(i).set(3, 2);
+			}
+		}
+	}
     private ArrayList getCoordinates()
     {
         ArrayList<Integer> coordinates = new ArrayList<Integer>();

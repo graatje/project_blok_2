@@ -32,7 +32,7 @@ public class Room
 				coordinates.add(Game.x);
 				coordinates.add(Game.y);
 				Game.history.add(coordinates);
-				return "it was a trap! you were teleported to somewhere in the map.";
+				return "it was a trap! you were teleported to somewhere in the map.test";
 				
             default:
                 return "There is nothing here, if you see this, you have found a bug.";
@@ -51,13 +51,8 @@ public class Room
                 return "nothing";
 			case 3:
 				//implement trapdoor
-				ArrayList<Integer> coordinates = new ArrayList<Integer>();
-				Game.x = Room.getRandomNumber(0, Main.size);
-				Game.y = Room.getRandomNumber(0, Main.size);
-				coordinates.add(Game.x);
-				coordinates.add(Game.y);
-				Game.history.add(coordinates);
-				System.out.println("it was a trap! you were teleported to somewhere in the map.");
+				
+				return "";
 				
             default:
                 //must have default due to not compiling otherwise
