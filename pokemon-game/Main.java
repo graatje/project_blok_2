@@ -1,7 +1,5 @@
 import java.util.Scanner;
 import java.util.InputMismatchException;
-import java.util.ArrayList;
-
 public class Main
 {
 	static int size = 0; //this is needed for trapdoor implementation
@@ -50,7 +48,9 @@ public class Main
         print("[Note] You have bonded with " + pickedPokemon + "!");
         print("[Note] It is your task now to become strong enough to defeat the first gym.");
         print("[Note] You are now able to navigate the map.");
-.
+        
+        // When the user is NOT in a battle it means he may roam the map freely, thus we need to be listening to commands.
+        // We should think of something where we can detect if the user is within a battle, or a non-movable situation.
         isMovable = true;
         while(isMovable) {
             String command = input.next().toLowerCase();
@@ -69,77 +69,7 @@ public class Main
             } else if(command.equals("bag")) {
                 print("[Note] You are carrying the following items");                
                 game.printBag();
-            } else if(command.equals("use")) {
-                // I'm going to apologize for the nesting beforehand. Sorry.
-                
-                print("[?] What item would you like to use?");
-                game.printBag();
-                print("[?] Enter the number of the item.");  
-
-                int toUse = input.nextInt(); 
-
-                // We can only use an item that is in the bag, which means the number has to be lower than the size of the bag and cannot be 0.
-                if(toUse > Room.bag.size() || toUse == 0) {
-                    print("[Note] Could not find the item to use.");
-                }else {
-                    String item = Room.bag.get(toUse - 1);             
-                    
-                    // Users are only able to use revives and potions
-                    if(item.equalsIgnoreCase("potion") || item.equalsIgnoreCase("revive")) {
-                        print("[Note] Which pokemon would you like to use the " + item + " on?");                
-                        Pokemon.printPokemon();
-                        print("[?] Enter the number of the pokemon.");  
-
-                        int pokemonNumber = input.nextInt();
-
-                        // Pokemon number cannot be more than the amount of pokemon the user has.
-                        if(pokemonNumber <= Pokemon.obtainedPokemonStats.size() && pokemonNumber > 0) {
-                            // Apply the item
-                            item = item.toLowerCase();
-
-                            int index = pokemonNumber - 1;
-                            ArrayList<Integer> pokemon = Pokemon.obtainedPokemonStats.get(index);
-                            ArrayList<Integer> raw = Pokemon.convertToStats(pokemon);
-                            int currentHealthPoints = Pokemon.hpOfPokes.get(index);
-                            switch(item) {
-                                case "potion":
-                                    // Check if the pokemon is dead.
-                                    if(currentHealthPoints > 0) {
-                                        int maxHealthPoints = raw.get(0);
-                                        
-                                        int newHealthPoints = 0;
-                                        if(currentHealthPoints + 20 > maxHealthPoints) {
-                                            newHealthPoints = maxHealthPoints;
-                                        } else {
-                                            newHealthPoints = currentHealthPoints + 20;
-                                        }
-
-                                        Pokemon.setCurrenthp(index, newHealthPoints);
-                                        Room.bag.remove(toUse - 1);
-                                        print("[Note] You successfully used the potion!");
-                                    } else print("[Note] You cannot use a potion on a dead pokemon.");
-                                    break;
-                                case "revive":
-                                    // Check if the pokemon is dead
-                                    if(currentHealthPoints == 0) {
-                                        Pokemon.setCurrenthp(index, 1);
-                                        Room.bag.remove(toUse - 1);
-                                        print("[Note] You successfully used the revive!");
-                                    } else print("[Note] You can only use a revive on a dead pokemon.");
-                                    break;
-                                default:
-                            }
-                        } else {
-                            print("[Note] Could not find the specified pokemon.");
-                        }
-
-                        // potion - Add healthpoints to a pokemon, pokemon can not be dead.  
-                        // revive - Add 1 to the healthpoints, only if the pokemon is dead.
-                    } else {
-                        print("[Note] This item is not usable.");
-                    }
-                }
-            } else if(command.equals("drop")) {
+            } else if(command.contains("drop")) {
                 print("[?] What item would you like to drop?");
                 game.printBag();
                 print("[?] Enter the number of the item.");
