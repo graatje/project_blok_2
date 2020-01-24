@@ -20,25 +20,25 @@ public class Room
         switch(number)
         {
             case 1:
-                return "You are in a big open field with a lot of grass.";
+                return "[Story] You are in a big open field with a lot of grass.";
             case 2:
-                return "You are in a dark cave with water dripping down somewhere. It is a really constant noise.";
+                return "[Story] You are in a dark cave with water dripping down somewhere. It is a really constant noise.";
             case 3:
-                return "You are in a forest, the trees are huge, it makes you feel small.";
+                return "[Story] You are in a forest, the trees are huge, it makes you feel small.";
             case 4:
-                return "You are in a vulcano, it is really hot here. Lava is flowing at some places.";
+                return "[Story] You are in a vulcano, it is really hot here. Lava is flowing at some places.";
             case 5:
-                return "You have found the pokemon gym!";
+                return "[Note] You have found the pokemon gym!";
 			case 6:
 				ArrayList<Integer> coordinates = new ArrayList<Integer>();
 				Game.x = Room.getRandomNumber(0, Main.size -1);
 				Game.y = Room.getRandomNumber(0, Main.size - 1);
-				System.out.println("you were teleported to " + Game.x);
-				System.out.println("you were teleported to " + Game.y);
+				// System.out.println("you were teleported to " + Game.x);
+				// System.out.println("you were teleported to " + Game.y);
 				coordinates.add(Game.x);
 				coordinates.add(Game.y);
 				Game.history.add(coordinates);
-				return "it was a trap! you were teleported to somewhere in the map.";
+				return "[Story] You fell into a trap! You were teleported to a random location and feel disorientated.";
 				
             default:
                 return "There is nothing here, if you see this, you have found a bug.";
@@ -83,19 +83,19 @@ public class Room
 					
 						if(input.nextLine().equals("yes"))
 						{
-							System.out.println("the large doors opened with a scraping sound.. Inside stands a person, with a impressing pokemon next to him. He sais: 'what are you waiting for? let's fight!'\n The opponent sent out mewtwo!");
+							System.out.println("[Story] Large doors opened with a scraping sound.. Inside stands a person, with an impressing pokemon next to him. He says: 'What are you waiting for? Let's fight!'\n[Battle] The opponent sent out mewtwo!");
 							
 							gymBattle = true;
 							
 							Battle b = new Battle();
 							
 							 b.theBattle(Pokemon.endBossPokemon());
-							 System.out.println("congratulations! You beat the gym!");
+							 System.out.println("[Winner] Congratulations! You beat the gym!");
 							 System.exit(0);
 						}
 						else
 						{
-							System.out.println("come back whenever you're ready.");
+							System.out.println("[Loser] Come back whenever you're ready.");
 						}
                 }else return "It seems to be locked.";
 				return "";

@@ -177,8 +177,8 @@ import java.util.ArrayList;
 			
 			x = Room.getRandomNumber(0, Main.size -1);
 			y = Room.getRandomNumber(0, Main.size - 1);
-			System.out.println("you were teleported to " + x);
-			System.out.println("you were teleported to " + y);
+			// System.out.println("you were teleported to " + x);
+			// System.out.println("you were teleported to " + y);
 			
 		}
 		ArrayList<Integer> coordinates = new ArrayList<Integer>();
@@ -196,8 +196,8 @@ import java.util.ArrayList;
     
     public void move(Integer addX, Integer addY) {
         // Check if the movement will put the player out of bounds
-		System.out.println(x);
-		System.out.println(y);
+		// System.out.println(x);
+		// System.out.println(y);
         if(x + addX >= thesize || y + addY >= thesize || x + addX < 0 || y + addY < 0) {
             System.out.println("[Note] It seems like the road is blocked, you cannot go any further.");      
         }else{

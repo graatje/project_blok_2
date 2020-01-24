@@ -2,14 +2,22 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 import java.util.ArrayList;
 
+/**
+* Hierin worden staan alle commands die gebruikt kunnen worden terwijl de speler door de map navigeert.
+* Daarbij is dit ook de Main class van het project.
+*
+* @author Martijn
+* @version 1.0
+*/
+
 public class Main
 {
-	static int size = 0; //this is needed for trapdoor implementation
+	static int size = 0;
     static final Scanner input = new Scanner(System.in);
     static boolean isMovable;
   
     public static void main(String args[]) { 
-        print("[?] How big would you like the map to be?\n[?] Enter a size from 5 to 30.\n[Note] You should keep in mind that having a smaller map does not mean the game will be easier.");
+        print("[?] How big would you like the map to be?\n[?] Enter a size from 5 to 30.\n[Note] A smaller map will only make the gym easier to be beaten.");
 		size = input.nextInt();
 				
         Game game = new Game(size);
@@ -162,7 +170,7 @@ public class Main
                 print("[Note] You are carrying the following pokemon");                
                 Pokemon.printPokemon();
             } else if(command.equals("menu")) {
-                print("[Note] What would you like to do?");
+                print("[?] What would you like to do?");
                 print("> Resume");
                 print("> About");
                 print("> Quit");
@@ -176,7 +184,7 @@ public class Main
                     System.exit(0);
                 }
             } else {
-                print("Could not find the command \"" + command + "\".");
+                print("[Note] Could not find the command \"" + command + "\".");
             }
             // game.printCoordinates();
         }    
