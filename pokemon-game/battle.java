@@ -668,7 +668,7 @@ public class Battle
 					}
 					else
 					{
-						System.out.println("you do not have any pokeballs...");
+						System.out.println("you do not have any poké balls...");
 					}
 						
 				}
@@ -818,7 +818,7 @@ public class Battle
 
         }
 		
-        moveInfo = movesetEnemy.get(Room.getRandomNumber(0, 3));
+        moveInfo = movesetEnemy.get(Room.getRandomNumber(0, movesetEnemy.size() - 1));
 
         if(Integer.parseInt(moveInfo.get(1).toString()) == 0)//physical
         {

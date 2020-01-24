@@ -70,7 +70,7 @@ import java.util.ArrayList;
         }
 		int trapdoorX = Room.getRandomNumber(1, size);// cant replace gym, so thats why -1
 		int trapdoorY = Room.getRandomNumber(1, size);
-		while(trapdoorX == Integer.parseInt(keyLocation.get(0).toString()) && trapdoorY == Integer.parseInt(keyLocation.get(1).toString()))
+		while(trapdoorX == Integer.parseInt(keyLocation.get(0).toString()) && trapdoorY == Integer.parseInt(keyLocation.get(1).toString()) && (trapdoorX == size - 1 && trapdoorY == size-1))
 		{
 			trapdoorX = Room.getRandomNumber(1, size);
 			trapdoorY = Room.getRandomNumber(1, size);
