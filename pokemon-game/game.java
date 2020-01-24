@@ -1,4 +1,14 @@
 import java.util.ArrayList;
+
+/**
+ * Dit is de klasse verantwoordelijk voor het spel. Wanneer er elders een game instant gemaakt wordt 
+ * zal er via de constructor een kamer van aangemaakt worden met de meegegeven paramater. 
+ * Hierin zullen vervolgens de items, data en pokemon worden verdeeld.
+ *
+ * @author Martijn
+ * @author Kevin
+ */
+
 public class Game {
     //preparing variables
     int numberOfMovements;
@@ -99,6 +109,9 @@ public class Game {
         history.add(coordinates);
     }
     
+    /**
+     * Methode die alle items in je inventaries naar het scherm print.
+     */
     public void printBag()
     {
         for(int i = 0; i < Room.bag.size(); i++)
@@ -109,7 +122,12 @@ public class Game {
         }
     }
 
-    
+    /**
+     * Methode die de message van een kamer naar het scherm print.
+     *
+     * @param x Dit is de X-coordinaat van de kamer.
+     * @param y Dit is de Y-coordinaat van de kamer.
+     */
     private void printRoomMessage(int x, int y) //gives message after entering a room
     {
         for(int i = 0; i < rooms.size(); i++)
@@ -142,6 +160,13 @@ public class Game {
         }
     }
      
+    /**
+     * Methode die via de coordinaten de gegevens van een kamer achterhaald
+     *
+     * @param x Dit is de X-coordinaat van de kamer.
+     * @param y Dit is de Y-coordinaat van de kamer.
+     * @return Een ArrayList met de interne gegevens van een kamer.
+     */
     public ArrayList getRoom(int x, int y) {
         for(int i = 0; i < rooms.size(); i++) {
            if(rooms.get(i).get(0) == x && rooms.get(i).get(1) == y) {
@@ -169,6 +194,12 @@ public class Game {
 		throw new IllegalArgumentException("that room could not be accessed");
 	}
     
+    /**
+     * Methode die de speler verplaatst over de grid map.
+     *
+     * @param addX Dit is het aantal stappen dat aan het X-coordinaat van de speler toegevoegd moeten worden.
+     * @param addY Dit is het aantal stappen dat aan het Y-coordinaat van de speler toegevoegd moeten worden.
+     */
     public void move(Integer addX, Integer addY) {
         // Check if the movement will put the player out of bounds
 		
@@ -219,6 +250,9 @@ public class Game {
         }
     }
     
+    /**
+     * Methode die de speler via de geschiedenis terugzet naar zijn vorige positie.
+     */
     public void back()
     {
         numberOfMovements -= 1;

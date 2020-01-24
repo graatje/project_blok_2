@@ -3,12 +3,14 @@ import java.util.InputMismatchException;
 import java.util.ArrayList;
 
 /**
-* Hierin worden staan alle commands die gebruikt kunnen worden terwijl de speler door de map navigeert.
-* Daarbij is dit ook de Main class van het project.
-*
-* @author Martijn
-* @version 1.0
-*/
+ * Hierin staan alle commands die gebruikt kunnen worden terwijl de speler door de map navigeert.
+ * Daarbij is dit ook de Main class van het project.
+ *
+ * @author Martijn
+ * @version 1.0
+ *
+ * I sincerely apologize for some of the code gore..
+ */
 
 public class Main
 {
@@ -21,9 +23,7 @@ public class Main
 		size = input.nextInt();
 				
         Game game = new Game(size);
-
-        // print("[Note] It is time for you to make your first few steps in this mythical world full of creatures.");
-        // print("[Note] Your goal will be to defeat your first pokemon gym and obtain a badge.");
+        
         print("[Note] It is time for you to pick your starter pokemon! Which will it be?");
         
         // Starter pokemons: Bulbasaur = 0, Charmander = 3, Squirtle = 6
@@ -186,10 +186,14 @@ public class Main
             } else {
                 print("[Note] Could not find the command \"" + command + "\".");
             }
-            // game.printCoordinates();
         }    
     }
     
+    /**
+     * Quick-to-use methode om snel iets naar het systeem the printen.
+     *
+     * @param message Dit is het bericht dat naar de console gestuurd zal worden.
+     */
     public static void print(String message) {
         System.out.println(message);
     }
