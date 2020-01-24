@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class Battle
 {
+	/**
+	deze klasse doet alles wat binnen een battle gebeurt. Onder andere het vangen, berekenen van schade en kiezen van moves.
+	**/
     double[] stats = {0.25, 0.286, 0.333, 0.4, 0.5, 0.666, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0};
     double[] evanissesAndAccuracy = {0.333, 0.375, 0.428, 0.5, 0.6, 0.75, 1.0, 1.333, 1.666, 2.0, 2.333, 2.666, 3.0};
     ArrayList<Integer> generatedOponentRaw = new ArrayList<Integer>();
@@ -34,7 +37,10 @@ public class Battle
     boolean choice;
     int tempSwitchIn;
     Scanner input = new Scanner(System.in);
-	
+	/**
+	@author Kevin
+	De constructor maakt een ArrayList voor statistieken in de battle zelf aan. om te beginnen hebben ze allemaal 1.0 maar gedurende de battle verandert dat.
+	**/
     Battle()
     {
         for(int i = 0; i <= 14; i++)
@@ -44,8 +50,14 @@ public class Battle
 
     }
 
-
-    public double effectiveness(int type_move, int pokemon) 
+/** 
+berekent de effectiviteit van moves. De types worden met behulp van de index van de pokemon opgehaald.
+@author Kevin
+@param type_move, de index van de pokemon
+@return double
+**/
+   
+   public double effectiveness(int type_move, int pokemon) 
     {
 
         if(Pokemon.types[pokemon].length == 2){
@@ -350,6 +362,11 @@ public class Battle
         return modifier;
     }
     // based on average team level.
+	/**
+	@author kevin
+	Deze methode wordt gebruikt om het level van wilde pokemons te berekenen.
+	@return int level
+	**/
     public static int generateLevel()
     {
         for(int i = 0; i < Pokemon.obtainedPokemonStats.size(); i++)
@@ -363,6 +380,11 @@ public class Battle
    
     //kindOfDmg is physical, special or status. respectively 0, 1 and 2
 
+/**
+Deze methode wordt gebruikt om te kijken of een speler niet game-over is.
+@author Kevin
+@return boolean
+**/
     public boolean checkIfNotDead()
     {
         ownhp = 0;
@@ -382,7 +404,12 @@ public class Battle
             return true;
         }
     }
+/**
+In deze methode vindt de battle plaats. berekenen van je eigen hp door middel van andere methodes gebeurt hier. Je kan hier ook moves kiezen, pokemons switchen en pokemons vangen.
+@author Kevin
+@param ArrayList opponentRawStats
 
+**/
     public void theBattle(ArrayList opponentRawStats)
     {
 		
@@ -699,7 +726,12 @@ public class Battle
             }
         }
     
-
+/**
+deze methode kijkt of een move van jezelf raakt of mist.
+@author Kevin
+@param accuracy de nauwkeurigheid wordt opgehaald uit een ArrayList
+@return boolean false als  move mis is, en anders raak.
+**/
     public boolean hitOrMiss(int accuracy)
     {
         if(Room.getRandomNumber(1, 100) <= accuracy * (Double.parseDouble(inBattleStats.get(5).toString()) / Double.parseDouble(inBattleStats.get(13).toString())))
@@ -713,7 +745,12 @@ public class Battle
             return false;
         }
     }
-
+/**
+deze methode kijkt of een move van de vijand raakt of mist.
+@author Kevin
+@param accuracy de nauwkeurigheid wordt opgehaald uit een ArrayList
+@return boolean false als  move mis is, en anders raak.
+**/
     public boolean hitOrMissEnemy(int accuracy)
     {
         if(Room.getRandomNumber(1, 100) <= accuracy * (Double.parseDouble(inBattleStats.get(12).toString()) / Double.parseDouble(inBattleStats.get(6).toString())))
@@ -727,6 +764,12 @@ public class Battle
         }
     }
 
+/**
+Berekent de schade of de verandering van status op de vijand met behulp van de move en andere stats. 
+@author Kevin
+@param moveinfo, rawstats, convertedstats, opponentrawstats, opponentcovertedstats
+@return int schades
+**/
     public int attackBySelf(ArrayList moveInfo, ArrayList rawStats, ArrayList convertedStats, ArrayList rawStatsOpponent, ArrayList convertedStatsOpponent)
     {
         kindOfDmg = Integer.parseInt(moveInfo.get(1).toString());
@@ -813,7 +856,12 @@ public class Battle
         }
         return 0; //ERROR
     }
-
+/**
+Berekent de schade of doet de verandering van status op de vijand met behulp van de move en andere stats. 
+@author Kevin
+@param opponentrawstats, opponentcovertedstats, rawstats, convertedstats
+@return int schade
+**/
     public int attackByEnemy(ArrayList opponentRawStats, ArrayList ownRawStats, ArrayList convertedStatsOpponent, ArrayList convertedStats)
     {
 

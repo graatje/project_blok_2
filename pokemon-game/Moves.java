@@ -1,6 +1,12 @@
 import java.util.*;
 import java.util.ArrayList;
 public class Moves
+/**
+@author Kevin
+@return ArrayList
+The class Moves is used only to set up moves.
+every method returns an ArrayList
+**/
 {
    static ArrayList<Integer> moveInfo = new ArrayList<Integer>();
    //moveInfo is displayed like (movedmg, damagetype, accuracy, type, stat it changes if it is a status move, amount it changes.)

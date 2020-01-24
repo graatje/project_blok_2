@@ -1,8 +1,16 @@
 import java.util.ArrayList;
 public class Item
 {
+	/**
+	@author Kevin Martijn
+	deze klasse maakt items aan en voegt deze toe aan een ArrayList, dropt items, geeft items uit een room.
+	*/
     static String retrievedItem;
     public static ArrayList<String> items;
+	/**
+	@author Kevin
+	voegt de items toe aan een ArrayList
+	**/
     Item(){
         ArrayList<String> items = new ArrayList<String>();
         items.add("potion");
@@ -10,6 +18,7 @@ public class Item
         items.add("Poké Ball");
         items.add("key");
     }
+	
     public static String get_Item_In_Room(int itemNumber)
     {
         ArrayList<String> items = new ArrayList<String>();

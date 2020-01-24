@@ -3,6 +3,13 @@ import java.util.*;
 import java.util.Scanner;
 import java.lang.Math;
 public class Pokemon
+/**
+deze klasse maakt pokemons aan, bevat arrays van de pokemon(zowel statistieken als naam, type, stats, movesets), geeft experience points aan een pokemon, leert moves aan, maakt een ArrayList met rawStats aan, daarin staat het pokemonnumber, pokemonlevel, hpiv, atkiv,defiv,spatkiv,spdefiv,speediv, hpev, atkev, defev,spatkev, spdefev, speedev en de xp.
+Daarmee worden de statistieken van een pokemon berekend. Dat gebeurt in klasse convertToStats.
+bevat een get methode om de naam van de pokemon te geven. 
+@author Kevin
+
+**//
 {
     public static ArrayList<ArrayList<Integer> > obtainedPokemonStats = new ArrayList<ArrayList<Integer>> (); // as raw stats
     public static ArrayList<Integer> hpOfPokes = new ArrayList<Integer>();
@@ -36,6 +43,11 @@ public class Pokemon
 	static int newLevel;
 	
 	//do inbattlePokemon -1 yourself
+	/**
+	berekent experience points en past deze aan, leert moves aan.
+	@author Kevin
+	@param inbattlepokemon, level van de tegenstander
+	**/
 	public static void getXp(int inbattlePokemon, int level)
 	{
 		ArrayList<Integer> rawStats = new ArrayList<Integer>();
@@ -103,54 +115,21 @@ public class Pokemon
 		}
 	}
 	//pokemon to be switched in 
-	public void switchPokemonOutOfBattle()
-	{
-		escape = 1;
-		while(escape == 1)
-		{
-			System.out.println("what pokemon do you want to switch? The number must be between 1 and the number of obtained pokemon");
-			int pokemon1 = input.nextInt();
-			System.out.println("what is the second pokemon you want to switch? The number must be between 1 and the number of obtained pokemon, and cant be the same as the previous number.");
-			int pokemon2 = input.nextInt();
-			if(pokemon1 >1 && pokemon1 < obtainedPokemonStats.size() && pokemon2 >1 && pokemon2 < obtainedPokemonStats.size() && pokemon1 != pokemon2)
-			{
-				// pokemon.obtainedPokemonStats(ArrayList, ArrayList, int)Pokemon.hpOfPokes(ArrayList, int), movesetSelf(ArrayList, ArrayList)
-				Collections.swap(obtainedPokemonStats, pokemon1 - 1, pokemon2 - 1);
-				Collections.swap(hpOfPokes, pokemon1 - 1, pokemon2 - 1);
-				Collections.swap(Battle.movesetSelf, pokemon1 - 1, pokemon2 - 1);
-			
-			}
-			else
-			{
-				System.out.println("you did something wrong. Do you want to retry?(yes/no)");
-				int whileWrong = 0;
-				while(whileWrong == 0)
-				{
-					choice = input.nextLine();
-					if(choice.equals("no"))
-					{
-						escape = 0;
-						whileWrong = 1;
-					}
-					else if(choice.equals("yes"))
-					{
-						escape = 1;
-						whileWrong = 1;
-					}
-					else
-					{
-						System.out.println("what did you say?");
-					}
-				}
-			}
-		}
-	}
 	
+	/**
+	geeft de naam van een pokemon.
+	@author Kevin
+	@return string
+	@param index
+	**/
     public static String getPokemon(int index)
     {
     return pokemon[index];   
     }
     // pokemonnumber, pokemonlevel, hpiv, atkiv,defiv,spatkiv,spdefiv,speediv, hpev, atkev, defev,spatkev, spdefev, speedev
+	/**
+	voegt een pokemon toe aan een ArrayList. In die ArrayList zitten meerdere pokemons die je kunt gebruiken.
+	**/
     public static void addPoke(ArrayList rawStats)
     {
 		ArrayList<ArrayList> knownMoves = new ArrayList<ArrayList>();
@@ -160,6 +139,11 @@ public class Pokemon
         knownMoves.add(learnset[Integer.parseInt(rawStats.get(0).toString())][0]);
 		Battle.movesetSelf.add(knownMoves);
     }
+	/**
+	dit zijn de rawStats van de eindbaas. Deze heeft hogere statistieken dan de andere pokemons.
+	@author Kevin
+	@return ArrayList
+	**/
     public static ArrayList endBossPokemon()
 	{
 		ArrayList<Integer> endBoss = new ArrayList<Integer>();
@@ -183,6 +167,13 @@ public class Pokemon
     //pokemonkind is generated with the room itself.
     //level should be auto generated, method not known yet. Could be based on average team level, level of first poke in team etc. 
     //example, addPoke(getWildPokeRawStats(pokemonkind, level))
+	
+	/**
+	Deze methode maakt rawstats van een pokemon aan. 
+	@author Kevin
+	@param pokemonKind, level van de te worden aangemaakte pokemon
+	@return ArrayList
+	**/
     public static ArrayList getWildPokeRawStats(int pokemonKind, int level)
     {
          // pokemonnumber, pokemonlevel, hpiv, atkiv,defiv,spatkiv,spdefiv,speediv, hpev, atkev, defev,spatkev, spdefev, speedev, xp
@@ -204,7 +195,10 @@ public class Pokemon
 		 rawStats.add(0);//xp
          return rawStats;
     }
-	
+	/**
+	@author Martijn
+	Deze methode print het level, de naam van de pokemon, de huidige health points en de maximale health points.
+	**/
 	public static void printPokemon() {
 		for(int x = 0; x < obtainedPokemonStats.size(); x++) {
 			ArrayList<Integer> stats = obtainedPokemonStats.get(x);
@@ -220,7 +214,12 @@ public class Pokemon
 			Main.print("> " + (x + 1) + " - [Lvl. " + level + "] " + pokemon + " (" + currentHealthPoints + "hp / " + maxHealthPoints + "hp)");
 		}
 	}
-    
+    /**
+	Maakt statistieken aan met behulp van een ArrayList. 
+	@author Kevin
+	@return ArrayList
+	@param ArrayList
+	**/
     public static ArrayList convertToStats(ArrayList rawStats)
     {
         // pokemonnumber, pokemonlevel, hpiv, atkiv,defiv,spatkiv,spdefiv,speediv, hpev, atkev, defev,spatkev, spdefev, speedev
