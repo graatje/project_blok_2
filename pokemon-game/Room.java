@@ -25,6 +25,15 @@ public class Room
                 return "You are in a vulcano, it is really hot here. Lava is flowing at some places.";
             case 5:
                 return "You have found the pokemon gym!";
+			case 6:
+				ArrayList<Integer> coordinates = new ArrayList<Integer>();
+				Game.x = Room.getRandomNumber(0, Main.size);
+				Game.y = Room.getRandomNumber(0, Main.size);
+				coordinates.add(Game.x);
+				coordinates.add(Game.y);
+				Game.history.add(coordinates);
+				return "it was a trap! you were teleported to somewhere in the map.test";
+				
             default:
                 return "There is nothing here, if you see this, you have found a bug.";
         }
@@ -40,6 +49,11 @@ public class Room
                 return "item";
             case 2:
                 return "nothing";
+			case 3:
+				//implement trapdoor
+				
+				return "";
+				
             default:
                 //must have default due to not compiling otherwise
                 return "nothing";
@@ -61,6 +75,15 @@ public class Room
                 if(bag.contains("key")) {
                     return "It seems that the key fits..\n[?] Would you like to enter the gym and start the final battle?";
                 }else return "It seems to be locked.";
+			case 4:
+				ArrayList<Integer> coordinates = new ArrayList<Integer>();
+				Game.x = Room.getRandomNumber(0, Main.size);
+				Game.y = Room.getRandomNumber(0, Main.size);
+				coordinates.add(Game.x);
+				coordinates.add(Game.y);
+				Game.history.add(coordinates);
+				return "it was a trap! you were teleported to somewhere in the map.";
+				
             default:
                 return "There is nothing in this room.";
         }
