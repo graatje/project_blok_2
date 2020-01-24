@@ -9,7 +9,7 @@ Daarmee worden de statistieken van een pokemon berekend. Dat gebeurt in klasse c
 bevat een get methode om de naam van de pokemon te geven. 
 @author Kevin
 
-**//
+**/
 {
     public static ArrayList<ArrayList<Integer> > obtainedPokemonStats = new ArrayList<ArrayList<Integer>> (); // as raw stats
     public static ArrayList<Integer> hpOfPokes = new ArrayList<Integer>();

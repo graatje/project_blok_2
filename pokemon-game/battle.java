@@ -4,7 +4,7 @@ public class Battle
 {
 	/**
 	deze klasse doet alles wat binnen een battle gebeurt. Onder andere het vangen, berekenen van schade en kiezen van moves.
-	**/
+	*/
     double[] stats = {0.25, 0.286, 0.333, 0.4, 0.5, 0.666, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0};
     double[] evanissesAndAccuracy = {0.333, 0.375, 0.428, 0.5, 0.6, 0.75, 1.0, 1.333, 1.666, 2.0, 2.333, 2.666, 3.0};
     ArrayList<Integer> generatedOponentRaw = new ArrayList<Integer>();
