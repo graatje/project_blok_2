@@ -187,7 +187,7 @@ import java.util.ArrayList;
                         // Start battle
                         ArrayList<Integer> opponentRawStats = Pokemon.getWildPokeRawStats(pokemon, 1);
 
-                        battle b = new battle();
+                        Battle b = new Battle();
 
                         // Main.print("Raw stats are " + opponentRawStats);
                         b.theBattle(opponentRawStats);

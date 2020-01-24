@@ -58,7 +58,7 @@ static ArrayList[][] learnset = {{Moves.vineWhip(), Moves.tackle(), Moves.razorL
 			//level up happened, now learning new move
 			if(Integer.parseInt(obtainedPokemonStats.get(inbattlePokemon).get(1).toString()) / 3.0 % 1.0 == 0.0 && Integer.parseInt(obtainedPokemonStats.get(inbattlePokemon).get(1).toString()) / 3.0 < learnset[Integer.parseInt(obtainedPokemonStats.get(inbattlePokemon).get(0).toString())].length)
 			{
-				if(battle.movesetSelf.size() == 4)
+				if(Battle.movesetSelf.size() == 4)
 				{
 					
 					escape = 1;
@@ -72,7 +72,7 @@ static ArrayList[][] learnset = {{Moves.vineWhip(), Moves.tackle(), Moves.razorL
 							changeMove = input.nextInt();
 							if(changeMove <= 4 && changeMove >= 1)
 							{
-								battle.movesetSelf.get(0).set(changeMove - 1, learnset[0][Integer.parseInt(rawStats.get(1).toString()) / 3]);
+								Battle.movesetSelf.get(0).set(changeMove - 1, learnset[0][Integer.parseInt(rawStats.get(1).toString()) / 3]);
 								escape = 0;
 							}
 							else
@@ -96,7 +96,7 @@ static ArrayList[][] learnset = {{Moves.vineWhip(), Moves.tackle(), Moves.razorL
 				{
 					try
 					{
-					battle.movesetSelf.get(inbattlePokemon).add(learnset[inbattlePokemon][Integer.parseInt(obtainedPokemonStats.get(inbattlePokemon).get(1).toString()) / 3]);
+					Battle.movesetSelf.get(inbattlePokemon).add(learnset[inbattlePokemon][Integer.parseInt(obtainedPokemonStats.get(inbattlePokemon).get(1).toString()) / 3]);
 					System.out.println(pokemon[Integer.parseInt(obtainedPokemonStats.get(inbattlePokemon).get(0).toString())] + "just learned a new move! It now has ");
 					}
 					catch(ArrayIndexOutOfBoundsException e)
@@ -122,7 +122,7 @@ static ArrayList[][] learnset = {{Moves.vineWhip(), Moves.tackle(), Moves.razorL
 				// pokemon.obtainedPokemonStats(ArrayList, ArrayList, int)Pokemon.hpOfPokes(ArrayList, int), movesetSelf(ArrayList, ArrayList)
 				Collections.swap(obtainedPokemonStats, pokemon1 - 1, pokemon2 - 1);
 				Collections.swap(hpOfPokes, pokemon1 - 1, pokemon2 - 1);
-				Collections.swap(battle.movesetSelf, pokemon1 - 1, pokemon2 - 1);
+				Collections.swap(Battle.movesetSelf, pokemon1 - 1, pokemon2 - 1);
 			
 			}
 			else
@@ -163,7 +163,7 @@ static ArrayList[][] learnset = {{Moves.vineWhip(), Moves.tackle(), Moves.razorL
         obtainedPokemonStats.add(rawStats);
         hpOfPokes.add(((2 * stats[Integer.parseInt(rawStats.get(0).toString())][0] + Integer.parseInt(rawStats.get(2).toString()) + (Integer.parseInt(rawStats.get(8).toString())/4)) * Integer.parseInt(rawStats.get(1).toString()) / 100 + Integer.parseInt(rawStats.get(1).toString())) + 10);
         knownMoves.add(learnset[Integer.parseInt(rawStats.get(0).toString())][0]);
-		battle.movesetSelf.add(knownMoves);
+		Battle.movesetSelf.add(knownMoves);
     }
     
     //pokemonkind is generated with the room itself.

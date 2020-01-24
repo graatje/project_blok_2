@@ -1,14 +1,14 @@
 import java.util.Scanner;
-
+import java.util.InputMismatchException;
 public class Main
 {
     static final Scanner input = new Scanner(System.in);
     static boolean isMovable;
-    
+  
     public static void main(String args[]) { 
         print("[?] How big would you like the map to be?\n[?] Enter a size from 5 to 30.\n[Note] You should keep in mind that having a smaller map does not mean the game will be easier.");
-
-        int size = input.nextInt();
+		int size = input.nextInt();
+				
         Game game = new Game(size);
 
         // print("[Note] It is time for you to make your first few steps in this mythical world full of creatures.");

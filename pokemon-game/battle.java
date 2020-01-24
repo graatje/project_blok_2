@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-public class battle
+public class Battle
 {
     double[] stats = {0.25, 0.286, 0.333, 0.4, 0.5, 0.666, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0};
     double[] evanissesAndAccuracy = {0.333, 0.375, 0.428, 0.5, 0.6, 0.75, 1.0, 1.333, 1.666, 2.0, 2.333, 2.666, 3.0};
@@ -37,7 +37,7 @@ public class battle
     boolean choice;
     int tempSwitchIn;
     Scanner input = new Scanner(System.in);
-    battle()
+    Battle()
     {
         for(int i = 0; i <= 14; i++)
         {
@@ -390,6 +390,7 @@ public class battle
 
     public void theBattle(ArrayList opponentRawStats)
     {
+		
         ArrayList<Integer> convertedStatsOpponent = new ArrayList<Integer>();
         opponentConvertedStats =  Pokemon.convertToStats(opponentRawStats);
         //initializing things for the battle
@@ -491,7 +492,7 @@ public class battle
                 else if(Integer.parseInt(ownConvertedStats.get(5).toString()) < Integer.parseInt(opponentConvertedStats.get(5).toString()))
                 {
                     Pokemon.hpOfPokes.set(inbattlePokemon - 1, (Integer.parseInt(Pokemon.hpOfPokes.get(inbattlePokemon - 1).toString()) - attackByEnemy(opponentRawStats, Pokemon.obtainedPokemonStats.get(inbattlePokemon - 1), opponentConvertedStats, ownConvertedStats)));
-                    System.out.println("you have " + Integer.parseInt(Pokemon.hpOfPokes.get(inbattlePokemon - 1).toString()) + "hp remaining");
+                    System.out.println("You have " + Integer.parseInt(Pokemon.hpOfPokes.get(inbattlePokemon - 1).toString()) + "hp remaining");
                     if(opponenthp > 0 && Integer.parseInt(Pokemon.hpOfPokes.get(inbattlePokemon - 1).toString()) > 0)
                     {
                         choice = false;
@@ -571,10 +572,11 @@ public class battle
                     }
 				}
 			}
-                else if(action.equals("switch"))
+                else if(action.equals("switch") && (Pokemon.hpOfPokes.size() != 1))
                 {
 					
-                    choice = true;
+						choice = true;
+                    
                     while(choice)
                     {
 						
@@ -606,6 +608,10 @@ public class battle
                     }
 
                 }
+				else if (Pokemon.hpOfPokes.size() == 1)
+				{
+					System.out.println("you can't switch yet since you only have 1 pokemon.");
+				}
             }
         }
     
@@ -889,7 +895,7 @@ public class battle
     public static void main(String args[])
     {
 		
-       battle b = new battle();
+       Battle b = new Battle();
 	   
 	   b.testBattle();
 	   b.testBattle2();
