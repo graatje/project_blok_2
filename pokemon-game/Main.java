@@ -21,7 +21,7 @@ public class Main
         // Starter pokemons: Bulbasaur = 0, Charmander = 3, Squirtle = 6
         print("> 1 - Bulbasaur\n> 2 - Charmander \n> 3 - Squirtle");
         print("[?] Enter the number of the pokemon you would like to obtain.");
-
+	   
         String pickedPokemon = "";
         while(pickedPokemon == "") {
             int pokemon = input.nextInt();
@@ -121,7 +121,7 @@ public class Main
                                     break;
                                 case "revive":
                                     // Check if the pokemon is dead
-                                    if(currentHealthPoints == 0) {
+                                    if(currentHealthPoints <= 0) {
                                         Pokemon.setCurrenthp(index, 1);
                                         Room.bag.remove(toUse - 1);
                                         print("[Note] You successfully used the revive!");

@@ -8,6 +8,8 @@ import java.util.ArrayList;
         //define int n = 1 if bug
        static int x;
        static int y;
+	   int trapdoorX;
+	   int trapdoorY;
         int thesize;
         String resultMessage;
         int roomType;
@@ -16,16 +18,19 @@ import java.util.ArrayList;
         
         //constructor
        Game(int size){
-        if (size < 4 || size > 30) 
+        if (size < 5 || size > 30) 
         {
-            throw new IllegalArgumentException("size must be between 4 and 30");
+            throw new IllegalArgumentException("size must be between 5 and 30");
         }
         
         //generate rooms
         // Location of the key (key cannot be found on the borders)
         ArrayList<Integer> keyLocation = new ArrayList<Integer>();
         keyLocation.add(Room.getRandomNumber(1, size - 1));
+		
+		
         keyLocation.add(Room.getRandomNumber(1, size - 1));
+		
         for(int ysize = 0; ysize < size; ysize++)
         {
             for(int xsize = 0; xsize < size; xsize++)
@@ -68,16 +73,14 @@ import java.util.ArrayList;
 			
 			
         }
-		int trapdoorX = Room.getRandomNumber(1, size);// cant replace gym, so thats why -1
-		int trapdoorY = Room.getRandomNumber(1, size);
-		while(trapdoorX == Integer.parseInt(keyLocation.get(0).toString()) && trapdoorY == Integer.parseInt(keyLocation.get(1).toString()) && (trapdoorX == size - 1 && trapdoorY == size-1))
+		trapdoorX = Room.getRandomNumber(0, size -1);
+		trapdoorY = Room.getRandomNumber(0, size -1);
+		while(trapdoorX == Integer.parseInt(keyLocation.get(0).toString()) - 1 && trapdoorY == Integer.parseInt(keyLocation.get(1).toString()) -1 || (trapdoorX == size - 1 && trapdoorY == size-1))
 		{
-			trapdoorX = Room.getRandomNumber(1, size);
-			trapdoorY = Room.getRandomNumber(1, size);
+			trapdoorX = Room.getRandomNumber(0, size -1);
+			trapdoorY = Room.getRandomNumber(0, size -1);
 		}
-		System.out.println("trapdoor");
-		System.out.println(trapdoorX);
-		System.out.println(trapdoorY);
+		
 		for(int i = 0; i < rooms.size(); i++)
 			{ 
 				if(rooms.get(i).get(0) == trapdoorX && rooms.get(i).get(1) == trapdoorY)
@@ -107,7 +110,7 @@ import java.util.ArrayList;
             Main.print("> " + (i + 1) + " - " + item);
         }
     }
-    public void printRooms() //developer only
+    public static void printRooms() //developer only
         {
         for(int i = 0; i < rooms.size(); i++)
         {
@@ -115,7 +118,9 @@ import java.util.ArrayList;
             {
                 System.out.print(rooms.get(i).get(j) + " ");
             }
+			System.out.print("\n");
         }
+	
     }
     
     public void printHistory() //developer only
@@ -167,12 +172,32 @@ import java.util.ArrayList;
                return rooms.get(i);
            }
         }
+        while((trapdoorX == x) && (trapdoorY == y))
+		{
+			
+			x = Room.getRandomNumber(0, Main.size -1);
+			y = Room.getRandomNumber(0, Main.size - 1);
+			System.out.println("you were teleported to " + x);
+			System.out.println("you were teleported to " + y);
+			
+		}
+		ArrayList<Integer> coordinates = new ArrayList<Integer>();
+		coordinates.add(x);
+			coordinates.add(y);
+			Game.history.add(coordinates);
+		for(int i = 0; i < rooms.size(); i++) {
+           if(rooms.get(i).get(0) == x && rooms.get(i).get(1) == y) {
+               return rooms.get(i);
+           }
         
-        throw new IllegalArgumentException("Could not find a room on this location.");
-    }
+		}
+		throw new IllegalArgumentException("that room could not be accessed");
+	}
     
     public void move(Integer addX, Integer addY) {
         // Check if the movement will put the player out of bounds
+		System.out.println(x);
+		System.out.println(y);
         if(x + addX >= thesize || y + addY >= thesize || x + addX < 0 || y + addY < 0) {
             System.out.println("[Note] It seems like the road is blocked, you cannot go any further.");      
         }else{
@@ -205,10 +230,10 @@ import java.util.ArrayList;
                 switch(answer) {
                     case 1:
                         // Start battle
-                        ArrayList<Integer> opponentRawStats = Pokemon.getWildPokeRawStats(pokemon, 1);
+						
+                        ArrayList<Integer> opponentRawStats = Pokemon.getWildPokeRawStats(pokemon, 1 + (Battle.generateLevel() /3));
 
-                        Battle b = new Battle();
-
+                       Battle b = new Battle();
                         // Main.print("Raw stats are " + opponentRawStats);
                         b.theBattle(opponentRawStats);
                         break;
