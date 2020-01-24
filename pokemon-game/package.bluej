@@ -3,6 +3,50 @@ dependency1.from=battle
 dependency1.to=Pokemon
 dependency1.type=UsesDependency
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+dependency2.from=battle
+=======
+<<<<<<< HEAD
+dependency2.from=Pokemon
+>>>>>>> 7a36c306e6657382610c90bd5dfc8ebc6d42d625
+dependency2.to=Room
+dependency2.type=UsesDependency
+dependency3.from=game
+dependency3.to=Room
+dependency3.type=UsesDependency
+dependency4.from=game
+dependency4.to=Pokemon
+dependency4.type=UsesDependency
+dependency5.from=Moves
+dependency5.to=Room
+dependency5.type=UsesDependency
+dependency6.from=Pokemon
+dependency6.to=Moves
+dependency6.type=UsesDependency
+dependency7.from=Pokemon
+dependency7.to=Room
+dependency7.type=UsesDependency
+<<<<<<< HEAD
+dependency8.from=Room
+dependency8.to=Item
+dependency8.type=UsesDependency
+dependency9.from=Room
+dependency9.to=Pokemon
+dependency9.type=UsesDependency
+editor.fx.0.height=0
+editor.fx.0.width=0
+editor.fx.0.x=0
+editor.fx.0.y=0
+objectbench.height=106
+objectbench.width=1512
+=======
+editor.fx.0.height=838
+editor.fx.0.width=1550
+editor.fx.0.x=-7
+editor.fx.0.y=-7
+=======
+>>>>>>> 26dba5690516ac56d99d523cd02fae63eaeebdf6
 dependency10.from=Main
 dependency10.to=Item
 dependency10.type=UsesDependency
@@ -52,8 +96,10 @@ editor.fx.0.height=737
 editor.fx.0.width=814
 editor.fx.0.x=360
 editor.fx.0.y=28
+>>>>>>> dc2b9c03c495af545396067758e517ba3577876c
 objectbench.height=93
 objectbench.width=901
+<<<<<<< HEAD
 =======
 dependency2.from=battle
 dependency2.to=Room
@@ -86,6 +132,9 @@ editor.fx.0.y=0
 objectbench.height=106
 objectbench.width=1512
 >>>>>>> 625c1304db563115ad3b8401ed33af1a73cca5b7
+=======
+>>>>>>> 7a36c306e6657382610c90bd5dfc8ebc6d42d625
+>>>>>>> 26dba5690516ac56d99d523cd02fae63eaeebdf6
 package.divider.horizontal=0.599894291754757
 package.divider.vertical=0.8468614718614718
 package.editor.height=620
@@ -93,16 +142,32 @@ package.editor.width=1424
 package.editor.x=0
 package.editor.y=0
 <<<<<<< HEAD
+<<<<<<< HEAD
 package.frame.height=830
 package.frame.width=1548
 package.numDependencies=16
 package.numTargets=6
 =======
+=======
+>>>>>>> 26dba5690516ac56d99d523cd02fae63eaeebdf6
 package.frame.height=838
 package.frame.width=1550
 package.numDependencies=9
+=======
+package.frame.height=830
+package.frame.width=1548
+<<<<<<< HEAD
+package.numDependencies=7
+>>>>>>> 7a36c306e6657382610c90bd5dfc8ebc6d42d625
 package.numTargets=7
+<<<<<<< HEAD
 >>>>>>> 625c1304db563115ad3b8401ed33af1a73cca5b7
+=======
+=======
+package.numDependencies=16
+package.numTargets=6
+>>>>>>> dc2b9c03c495af545396067758e517ba3577876c
+>>>>>>> 26dba5690516ac56d99d523cd02fae63eaeebdf6
 package.showExtends=true
 package.showUses=true
 project.charset=UTF-8
@@ -148,6 +213,7 @@ target5.x=70
 target5.y=10
 target6.height=50
 <<<<<<< HEAD
+<<<<<<< HEAD
 target6.name=Room
 target6.showInterface=false
 target6.type=ClassTarget
@@ -155,7 +221,13 @@ target6.width=100
 target6.x=360
 target6.y=100
 =======
+=======
+>>>>>>> 26dba5690516ac56d99d523cd02fae63eaeebdf6
 target6.name=Main
+=======
+<<<<<<< HEAD
+target6.name=testClass
+>>>>>>> 7a36c306e6657382610c90bd5dfc8ebc6d42d625
 target6.showInterface=false
 target6.type=ClassTarget
 target6.width=80
@@ -168,4 +240,15 @@ target7.type=ClassTarget
 target7.width=100
 target7.x=360
 target7.y=100
+<<<<<<< HEAD
 >>>>>>> 625c1304db563115ad3b8401ed33af1a73cca5b7
+=======
+=======
+target6.name=Room
+target6.showInterface=false
+target6.type=ClassTarget
+target6.width=100
+target6.x=360
+target6.y=100
+>>>>>>> dc2b9c03c495af545396067758e517ba3577876c
+>>>>>>> 26dba5690516ac56d99d523cd02fae63eaeebdf6
