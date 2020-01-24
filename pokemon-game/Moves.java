@@ -1,33 +1,10 @@
 import java.util.*;
 import java.util.ArrayList;
-
 public class Moves
 {
-    
-    Dictionary types = new Hashtable(); 
    static ArrayList<Integer> moveInfo = new ArrayList<Integer>();
-   //moveInfo is displayed like (movedmg, type)
-  
-    Moves()
-    {
-        // Bug, Dragon, Electric, Fighting, Fire, Flying, Ghost, Grass, Ground, Ice, Normal, Poison, Psychic, Rock, and Water.
-        types.put("1", "grass");
-        types.put("2", "water");
-        types.put("3", "fire");
-        types.put("4", "psychic");
-        types.put("5", "bug");
-        types.put("6", "electric");
-        types.put("7", "dragon");
-        types.put("8", "fighting");
-        types.put("9", "flying");
-        types.put("10", "ghost");
-        types.put("11", "ground");
-        types.put("12", "ice");
-        types.put("13", "normal");
-        types.put("14", "poison");
-        types.put("15", "rock");
-        //convert int to string: String str1 = Integer.toString(a);
-    }
+   //moveInfo is displayed like (movedmg, damagetype, accuracy, type, stat it changes if it is a status move, amount it changes.)
+   // grass, water, fire, psychic, bug, electric, dragon, fighting, flying, ghost, ground, ice, normal, poison, rock are the types. 
     public static ArrayList absorb()
     {
         //when possible recover half of inflicted dmg
@@ -1208,6 +1185,4 @@ public class Moves
        moveInfo.add(0);
        return moveInfo;
     }
-    
-
 }

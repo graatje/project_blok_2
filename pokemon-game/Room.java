@@ -33,8 +33,7 @@ public class Room
 				ArrayList<Integer> coordinates = new ArrayList<Integer>();
 				Game.x = Room.getRandomNumber(0, Main.size -1);
 				Game.y = Room.getRandomNumber(0, Main.size - 1);
-				System.out.println("you were teleported to " + Game.x);
-				System.out.println("you were teleported to " + Game.y);
+				
 				coordinates.add(Game.x);
 				coordinates.add(Game.y);
 				Game.history.add(coordinates);
@@ -95,7 +94,7 @@ public class Room
 						}
 						else
 						{
-							System.out.println("come back whenever you're ready.");
+							System.out.println("Come back whenever you're ready.");
 						}
                 }else return "It seems to be locked.";
 				return "";

@@ -5,12 +5,8 @@ public class Battle
     double[] stats = {0.25, 0.286, 0.333, 0.4, 0.5, 0.666, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0};
     double[] evanissesAndAccuracy = {0.333, 0.375, 0.428, 0.5, 0.6, 0.75, 1.0, 1.333, 1.666, 2.0, 2.333, 2.666, 3.0};
     ArrayList<Integer> generatedOponentRaw = new ArrayList<Integer>();
-    ArrayList<Integer> statsOfOpponent = new ArrayList<Integer>();
     int r;
-    static ArrayList<Integer> movesetSelfCopy = new ArrayList<Integer>();
-    int maxLevel;
 	boolean hasItem;
-    int wildPokeLevel;
     int currentStatIndex;
     int individualPokemonHp;
 	boolean hasDeletedItem;
@@ -27,8 +23,7 @@ public class Battle
     int type2;
     int inbattlePokemon;
     double modifier;
-    ArrayList<ArrayList> movesetEnemy = new ArrayList<ArrayList>();
-    double modifier2;
+    ArrayList<ArrayList> movesetEnemy = new ArrayList<ArrayList>(); 
     ArrayList<Double> inBattleStats = new ArrayList<Double>();
     ArrayList<Integer> opponentConvertedStats = new ArrayList<Integer>();
     // attack(0), defense(1), special attack(2), special defense(3), speed(4), accuracy(5), evasion(6), atkOpponent(7), defOpponent(8), specAtkOpponent(9), specDefOpponent(10), speedOpponent(11), accuracyOpponent(12), evasionOpponent(13)
@@ -39,6 +34,7 @@ public class Battle
     boolean choice;
     int tempSwitchIn;
     Scanner input = new Scanner(System.in);
+	
     Battle()
     {
         for(int i = 0; i <= 14; i++)
@@ -364,12 +360,8 @@ public class Battle
         return level;
     }
 
-    public void wildOpponent(int pokemonKind)
-    {
-        generatedOponentRaw = Pokemon.getWildPokeRawStats(pokemonKind, generateLevel());
-
-    }
-    //kindOfDmg is physical or special. respectively 0 and 1
+   
+    //kindOfDmg is physical, special or status. respectively 0, 1 and 2
 
     public boolean checkIfNotDead()
     {
@@ -428,7 +420,6 @@ public class Battle
                 //if you are faster
                 if(Integer.parseInt(ownConvertedStats.get(5).toString()) >= Integer.parseInt(opponentConvertedStats.get(5).toString()))
                 {
-
                     //attack by yourself
                     choice = false;
                     while(!choice)
@@ -459,8 +450,12 @@ public class Battle
 						}
 						Pokemon.hpOfPokes.set(inbattlePokemon - 1, (ownhp));
                         System.out.println("you have " + Integer.parseInt(Pokemon.hpOfPokes.get(inbattlePokemon - 1).toString()) + "hp remaining");
-                       
-                    }
+                       if(!checkIfNotDead())
+					   {
+						   System.out.println("Game over...");
+						   System.exit(0);
+						}
+					}
                     else if(opponenthp <= 0)
                     {
                         System.out.println("You defeated the enemy");
@@ -521,6 +516,11 @@ public class Battle
 						}
 						Pokemon.hpOfPokes.set(inbattlePokemon - 1, (ownhp));
 					System.out.println("You have " + Integer.parseInt(Pokemon.hpOfPokes.get(inbattlePokemon - 1).toString()) + "hp remaining");
+					if(!checkIfNotDead())
+					   {
+						   System.out.println("Game over...");
+						   System.exit(0);
+						}
                     if(opponenthp > 0 && Integer.parseInt(Pokemon.hpOfPokes.get(inbattlePokemon - 1).toString()) > 0)
                     {
                         choice = false;
@@ -733,9 +733,9 @@ public class Battle
         {            
             if(hitOrMiss(Integer.parseInt(moveInfo.get(2).toString())))
             {
-
+				//damage = ((((((2*ownLevel)/5)+2)*movePower * ownAttack / ownDefence)/50)+2)*effectiveness
                 damage = (int)((((2 * Integer.parseInt(rawStats.get(1).toString()) / 5 + 2) * (Integer.parseInt(moveInfo.get(0).toString())) * Integer.parseInt(convertedStats.get(1).toString()) / Integer.parseInt(convertedStatsOpponent.get(2).toString())) / 50 + 2) * effectiveness(Integer.parseInt(moveInfo.get(3).toString()), Integer.parseInt(rawStatsOpponent.get(0).toString())));
-                //idk why but this might fix a bug
+                
                 System.out.println("You did " + damage + "damage!");
                 return damage;
             }
@@ -744,6 +744,7 @@ public class Battle
         {
             if(hitOrMiss(Integer.parseInt(moveInfo.get(2).toString())))
             {
+				//damage = ((((((2*enemylevel)/5)+2)*movePower * opponentSpecialAttack / ownSpecialDefence)/50)+2)*effectiveness
                 damage = (int)((((2 * Integer.parseInt(rawStats.get(1).toString()) / 5 + 2) * (Integer.parseInt(moveInfo.get(0).toString())) * Integer.parseInt(convertedStats.get(3).toString()) / Integer.parseInt(convertedStatsOpponent.get(4).toString())) / 50 + 2) * effectiveness(Integer.parseInt(moveInfo.get(3).toString()), Integer.parseInt(rawStatsOpponent.get(0).toString())));
                 System.out.println("You did " + damage + "damage!");
                 return damage;
@@ -815,13 +816,10 @@ public class Battle
     public int attackByEnemy(ArrayList opponentRawStats, ArrayList ownRawStats, ArrayList convertedStatsOpponent, ArrayList convertedStats)
     {
 
-        //moveInfo has been removed from the parameters, moveInfo will be generated inside this method.
-        //making moveset, learns a new move every X levels
+        
+        //making moveset, learns a new move every 3 levels
 
-        //form of ArrayList rawStats
-        //pokemonnumber, pokemonlevel, hpiv, atkiv,defiv,spatkiv,spdefiv,speediv, hpev, atkev, defev,spatkev, spdefev, speedev
-
-        //setting integer
+        
         if(Integer.parseInt(opponentRawStats.get(1).toString())/5 >= Pokemon.learnset[Integer.parseInt(opponentRawStats.get(0).toString())].length)
         {
             r = Integer.parseInt(opponentRawStats.get(1).toString())/3;
@@ -846,10 +844,10 @@ public class Battle
         if(Integer.parseInt(moveInfo.get(1).toString()) == 0)//physical
         {
 
-            //must cast it into an int
-            //                    level   			attack                                                                                defense                                         
-            if(hitOrMissEnemy(Integer.parseInt(moveInfo.get(2).toString())))
+            
+               if(hitOrMissEnemy(Integer.parseInt(moveInfo.get(2).toString())))
             {
+				//damage = ((((((2*enemylevel)/5)+2)*movePower * opponentAttack / ownDefence)/50)+2)*effectiveness
                 damage = (int)(((((2 * Integer.parseInt(opponentRawStats.get(1).toString()) / 5 + 2) * (Integer.parseInt(moveInfo.get(0).toString())) * (Double.parseDouble(inBattleStats.get(7).toString()) *(Integer.parseInt(convertedStatsOpponent.get(1).toString())))) / (Integer.parseInt(convertedStats.get(2).toString()) * Double.parseDouble(inBattleStats.get(1).toString())))/50 + 2) * effectiveness(Integer.parseInt(moveInfo.get(3).toString()), Integer.parseInt(ownRawStats.get(0).toString())));
                 System.out.println("the oppenent did " + damage + "damage!");
                 return damage;
@@ -859,6 +857,7 @@ public class Battle
         {
             if(hitOrMissEnemy(Integer.parseInt(moveInfo.get(2).toString())))
             {
+				//damage = ((((((2*enemylevel)/5)+2)*movePower * opponentSpecialAttack / ownSpecialDefence)/50)+2)*effectiveness
                 damage = (int)((((2 * Integer.parseInt(opponentRawStats.get(1).toString()) / 5 + 2) * (Integer.parseInt(moveInfo.get(0).toString())) * (Integer.parseInt(convertedStatsOpponent.get(3).toString()) * Double.parseDouble(inBattleStats.get(9).toString()))/ (Integer.parseInt(convertedStats.get(4).toString()) * Double.parseDouble(inBattleStats.get(3).toString()))/50 + 2)) * effectiveness(Integer.parseInt(moveInfo.get(3).toString()), Integer.parseInt(ownRawStats.get(0).toString())));
                 System.out.println("the oppenent did " + damage + "damage!");
                 return damage;
@@ -879,7 +878,7 @@ public class Battle
                 {
                     indexOfStat = Integer.parseInt(moveInfo.get(4).toString());
                 }
-                //detecting changes
+                //detecting changes that already happened
                 if(Integer.parseInt(moveInfo.get(5).toString()) == 5 || Integer.parseInt(moveInfo.get(5).toString()) == 6 || Integer.parseInt(moveInfo.get(5).toString()) == 12 || Integer.parseInt(moveInfo.get(5).toString()) == 13)
                 {
                     for(int i  = 0; i<evanissesAndAccuracy.length; i++)
@@ -889,14 +888,14 @@ public class Battle
                             currentStatIndex = i;
                         }
                     }
-					//try & catch used to be here
+					
                     inBattleStats.set(indexOfStat, stats[(currentStatIndex + moveInfo.get(5))]);
 				
                 }
                 else{
                     for(int i = 0; i<stats.length; i++)
                     {
-						// try & catch used to be here before
+						
                         if(stats[i] == Double.parseDouble(inBattleStats.get(indexOfStat).toString()))
                         {
                             currentStatIndex = i;
@@ -905,7 +904,7 @@ public class Battle
 						
 
                     }
-                    //putting check to not exceed index
+                    
                     if((currentStatIndex + moveInfo.get(5))< 0)
 
                     {
@@ -931,58 +930,7 @@ public class Battle
         }
         
     }
-	return 0;
+	return 0; //when a status attack is done
 	}
-
-    public void testBattle()
-    {
-		
-        Pokemon.addPoke(Pokemon.getWildPokeRawStats(75, 5));
-		
-		Pokemon.addPoke(Pokemon.getWildPokeRawStats(12, 1));
-        
-        theBattle(Pokemon.getWildPokeRawStats(1, 1));
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-	
-    }
-    public void testBattle2()
-    {
-       
-       
-        System.out.println(Pokemon.pokemon[75]);
-        theBattle(Pokemon.getWildPokeRawStats(1, 1));
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-		Pokemon.getXp(1 - 1, 70);
-	
-    }
-    public static void main(String args[])
-    {
-		
-       Battle b = new Battle();
-	   
-	   b.testBattle();
-	   b.testBattle2();
-    }
 }
 
