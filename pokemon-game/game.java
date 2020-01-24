@@ -6,12 +6,12 @@ import java.util.ArrayList;
         //preparing variables
         int numberOfMovements;
         //define int n = 1 if bug
-        int x;
-        int y;
+        static int x;
+        static int y;
         int thesize;
         String resultMessage;
         int roomType;
-        ArrayList<ArrayList<Integer> > history = new ArrayList<ArrayList<Integer> >();
+        static ArrayList<ArrayList<Integer>> history = new ArrayList<ArrayList<Integer> >();
         public static ArrayList<ArrayList<Integer> > rooms = new ArrayList<ArrayList<Integer> >();
         
         //constructor
