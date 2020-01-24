@@ -155,10 +155,27 @@ public class Main
                         Item.drop(toDrop);
                     }else print("[Note] You did not drop the item.");    
                 }
+            } else if(command.equals("back")) {
+                print("[Note] You were moved back to your previous position.");
+                game.back();  
             } else if (command.equals("pokemon")){
                 print("[Note] You are carrying the following pokemon");                
                 Pokemon.printPokemon();
-            }else {
+            } else if(command.equals("menu")) {
+                print("[Note] What would you like to do?");
+                print("> Resume");
+                print("> About");
+                print("> Quit");
+
+                String action = input.next();
+                if(action.equalsIgnoreCase("resume")) {
+                    print("[Note] Game was resumed.");
+                }else if(action.equalsIgnoreCase("about")) {
+                    print("[Note] This game was created by Kevin and Martijn for a schoolproject.");
+                }else if(action.equalsIgnoreCase("quit")) {
+                    System.exit(0);
+                }
+            } else {
                 print("Could not find the command \"" + command + "\".");
             }
             // game.printCoordinates();
